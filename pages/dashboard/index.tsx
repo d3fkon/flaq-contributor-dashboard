@@ -11,12 +11,18 @@ import React from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { BsCardImage } from "react-icons/bs";
 import Image from "next/image";
+import ContentContainer from "../../components/dashboard/ContentContainer";
+import PipelineTable from "../../components/dashboard/PipelineTable";
 const Dashboard = () => {
   return (
-    <Container border="2" mx="0" maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}>
-      <Box minW="100%" minH="100%" bg="white">
-
-      </Box>
+    <Container
+      mt="18"
+      border="2"
+      mx="0"
+      maxW="100%"
+    >
+      <ContentContainer />
+      <PipelineTable/>
     </Container>
   );
 };
