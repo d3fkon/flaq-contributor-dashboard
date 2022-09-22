@@ -15,7 +15,7 @@ export default function SimpleCard() {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={"#1B1B1B"}
+      bg={"#F8F9FA"}
     >
 
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} align="center">

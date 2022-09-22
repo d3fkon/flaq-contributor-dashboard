@@ -26,7 +26,7 @@ const Navbar = () => {
     
     return (
         <>
-            <Box bg="#1B1B1B" px={4} borderBottom={"solid 2px #877979" }>
+            <Box bg="#F8F9FA" px={4} borderBottom={"solid 2px #877979" }>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <Box>Logo</Box>
 
