@@ -6,13 +6,15 @@ import {
   Flex,
   AvatarGroup,
   Avatar,
+  Icon,
 } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
 import cardimg from "../../public/img/cardimg.png";
+import { BsPlusLg } from "react-icons/bs";
 const ContentCard = () => {
   return (
-    <Box m="3" width={"370px"} height={"353px"}>
+    <Box m="3" maxW="350" w="100%" width={"370px"} height={"353px"}>
       <VStack>
         <Box>
           <Image width="370" height="191" src={cardimg} />
@@ -91,9 +93,29 @@ const ContentCard = () => {
 };
 
 export const CreateCard = () => {
-  return (
-    <Box width="376" height="353">
-      <Box width="100%"></Box>
+  return ( 
+    <Box borderRadius={"12"} border={"2px"} maxW="300" w="100%" height="353">
+      <Box minW="100%" h="100%">
+        <Flex
+          direction={"column"}
+          justifyContent="center"
+          py="42"
+          alignContent="center"
+          alignItems={"center"}
+          width="376"
+          height="353"
+        >
+          <Icon as={BsPlusLg} />
+          <Text
+            fontFamily={"Helvetica"}
+            color="#718096"
+            fontSize={"18px"}
+            fontWeight={"700"}
+          >
+            Create
+          </Text>
+        </Flex>
+      </Box>
     </Box>
   );
 };
