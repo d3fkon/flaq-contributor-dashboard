@@ -1,7 +1,7 @@
 import { Container, Box, Text, Stack, Flex, Input ,Icon} from "@chakra-ui/react";
 import React from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
-import { BsCardImage } from "react-icons/Bs";
+import { BsCardImage } from "react-icons/bs";
 import Image from "next/image";
 const Dashboard = () => {
   return (

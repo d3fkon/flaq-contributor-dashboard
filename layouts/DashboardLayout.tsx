@@ -21,8 +21,8 @@ import {
   FiSettings,
   FiMenu,
 } from "react-icons/fi";
-import { BsCalendar2Event, BsNewspaper } from "react-icons/Bs";
-import { BiLibrary } from "react-icons/Bi";
+import { BsCalendar2Event, BsNewspaper } from "react-icons/bs";
+import { BiLibrary } from "react-icons/bi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 // import RightSideBar from "../components/dashboard/RightSideBar";
