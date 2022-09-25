@@ -4,7 +4,7 @@ import Link from 'next/link'
 import useAuthenticationStore from '../../stores/authenticationStore'
 import useLoadingStore from '../../stores/loadingStore'
 
-export default function SimpleCard() {
+export default function LoginCard() {
   const isLoading = useLoadingStore((state) => state.isLoading)
   const toggleLoading = useLoadingStore((state) => state.toggleLoading)
 
