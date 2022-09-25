@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { Box, Flex, Link, Stack } from '@chakra-ui/react'
+import { ReactNode } from 'react';
+import { Box, Flex, Link, Stack } from '@chakra-ui/react';
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -10,11 +10,10 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: 'none',
       bg: 'gray.200',
     }}
-    href={'#'}
-  >
+    href={'#'}>
     {children}
   </Link>
-)
+);
 
 const Navbar = () => {
   return (
@@ -29,7 +28,7 @@ const Navbar = () => {
         </Flex>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

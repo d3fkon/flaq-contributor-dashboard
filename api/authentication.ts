@@ -40,6 +40,36 @@ export type Response =
  *
  */
 
+export enum Status {
+  Success = 200,
+  BadRequest = 400,
+  Unauthorized = 401,
+}
+
+export enum FailedAuthenticationReason {
+  Unkown,
+  DeactivatedUser, // The user exists, but is no longer active.
+  InvalidCode, // The code provided is invalid.
+}
+
+export type AuthenticationFailure = {
+  reason: FailedAuthenticationReason;
+  message: string;
+};
+
+export type roles = 'Admin' | 'Creator' | undefined;
+
+export interface AuthData {
+  role: roles;
+  accessToken: string | undefined;
+  refreshToken: string | undefined;
+}
+
+export type Response =
+  | { status: Status.Success; data: AuthData }
+  | { status: Status.BadRequest; data: AuthenticationFailure }
+  | { status: Status.Unauthorized; data: AuthenticationFailure };
+
 export const verifyDiscordAuth = async (code: string): Promise<Response> => {
   try {
     const response = await flaqAxios().post<AuthData>(`/auth/discord-auth`, {
@@ -54,7 +84,7 @@ export const verifyDiscordAuth = async (code: string): Promise<Response> => {
           status: Status.BadRequest,
           data: {
             reason: FailedAuthenticationReason.InvalidCode,
-            message: "Invalid code",
+            message: 'Invalid code',
           },
         };
       }
@@ -63,7 +93,7 @@ export const verifyDiscordAuth = async (code: string): Promise<Response> => {
       status: Status.Unauthorized,
       data: {
         reason: FailedAuthenticationReason.Unkown,
-        message: "Unknown error occured.",
+        message: 'Unknown error occured.',
       },
     };
   }

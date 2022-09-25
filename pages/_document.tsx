@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+=======
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+>>>>>>> d04b438 (prettier setup and formating with it)
 
 class MyDocument extends Document {
   render() {

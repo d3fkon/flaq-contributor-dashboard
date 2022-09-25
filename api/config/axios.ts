@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import axios from "axios";
 import { isDevelopementEnvironment } from "../../utils/devDetect";
 import { AxiosError, AxiosRequestConfig } from "axios";
 import useAuthenticationStore from "../../stores/authenticationStore";
 import getConfig from "next/config";
 import { Roles } from "../authentication";
+=======
+import axios from 'axios';
+import { isDevelopementEnvironment } from '../../utils/devDetect';
+import { AxiosError, AxiosRequestConfig } from 'axios';
+import useAuthenticationStore from '../../stores/authenticationStore';
+import getConfig from 'next/config';
+>>>>>>> d04b438 (prettier setup and formating with it)
 
 // For using the ENV variables in the client side.
 const { publicRuntimeConfig } = getConfig();

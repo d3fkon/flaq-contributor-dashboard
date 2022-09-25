@@ -1,14 +1,34 @@
+<<<<<<< HEAD
 import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import useAuthenticationStore from '../../stores/authenticationStore'
 import useLoadingStore from '../../stores/loadingStore'
+=======
+import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import useAuthenticationStore from '../../stores/authenticationStore';
+import useLoadingStore from '../../stores/loadingStore';
+>>>>>>> d04b438 (prettier setup and formating with it)
 
 
 export default function LoginCard() {
+<<<<<<< HEAD
   const isLoading = useLoadingStore((state) => state.isLoading)
   const toggleLoading = useLoadingStore((state) => state.toggleLoading)
   const login = useAuthenticationStore((state) => state.login)
 
+=======
+  const isLoading = useLoadingStore((state) => state.isLoading);
+  const toggleLoading = useLoadingStore((state) => state.toggleLoading);
+
+  const login = useAuthenticationStore((state) => state.login);
+
+  if (isLoading) {
+    return <div>...LOADING</div>;
+  }
+
+>>>>>>> d04b438 (prettier setup and formating with it)
   return (
     <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'#F8F9FA'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} align="center">
@@ -19,8 +39,7 @@ export default function LoginCard() {
               fontFamily={'Poppins'}
               fontWeight="700"
               fontSize={'24px'}
-              color={'#ffffff'}
-            >
+              color={'#ffffff'}>
               Flaq
             </Text>
           </Box>
@@ -32,8 +51,7 @@ export default function LoginCard() {
                 fontFamily={'Poppins'}
                 fontWeight="700"
                 color={'#ffffff'}
-                fontSize={'24px'}
-              >
+                fontSize={'24px'}>
                 Welcome to the flaq academy
               </Text>
 
@@ -50,8 +68,7 @@ export default function LoginCard() {
                     height="20"
                     src={'/img/discord-white.svg'}
                   />
-                }
-              >
+                }>
                 Connect with Discord
               </Button>
             </Stack>
@@ -59,5 +76,5 @@ export default function LoginCard() {
         </Box>
       </Stack>
     </Flex>
-  )
+  );
 }

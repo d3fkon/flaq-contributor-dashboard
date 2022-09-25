@@ -7,11 +7,11 @@ import {
   AvatarGroup,
   Avatar,
   Icon,
-} from '@chakra-ui/react'
-import React from 'react'
-import Image from 'next/image'
-import cardimg from '../../public/img/cardimg.png'
-import { BsPlusLg } from 'react-icons/bs'
+} from '@chakra-ui/react';
+import React from 'react';
+import Image from 'next/image';
+import cardimg from '../../public/img/cardimg.png';
+import { BsPlusLg } from 'react-icons/bs';
 const ContentCard = () => {
   return (
     <Box m="3" maxW="350" w="100%" width={'370px'} height={'353px'}>
@@ -24,16 +24,14 @@ const ContentCard = () => {
             color={'#A0AEC0'}
             fontFamily={'Helvetica'}
             fontSize={'10px'}
-            fontWeight={'400'}
-          >
+            fontWeight={'400'}>
             Video
           </Text>
           <Text
             color={'#2D3748'}
             fontFamily={'Helvetica'}
             fontSize={'18px'}
-            fontWeight={700}
-          >
+            fontWeight={700}>
             Neo Blockchain & Future
           </Text>
           <Text
@@ -42,8 +40,7 @@ const ContentCard = () => {
             fontFamily={'Helvetica'}
             fontSize={'12px'}
             fontWeight={'400'}
-            lineHeight={'18px'}
-          >
+            lineHeight={'18px'}>
             A short video on why Neo Blockchain is potentially the biggest
             player in the industy now
           </Text>
@@ -59,8 +56,7 @@ const ContentCard = () => {
                 color="#818BF5"
                 border="1px solid #818BF5"
                 borderRadius={'12px'}
-                px="12"
-              >
+                px="12">
                 VIEW
               </Button>
             </Box>
@@ -103,15 +99,18 @@ export const CreateCard = () => {
           alignContent="center"
           alignItems={'center'}
           width="376"
-          height="353"
-        >
+          height="353">
           <Icon as={BsPlusLg} />
           <Text
             fontFamily={'Helvetica'}
             color="#718096"
             fontSize={'18px'}
+<<<<<<< HEAD
             fontWeight={'700'}
           >
+=======
+            fontWeight={'700'}>
+>>>>>>> d04b438 (prettier setup and formating with it)
             Create
           </Text>
         </Flex>

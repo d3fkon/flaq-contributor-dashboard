@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import { Container } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import DashboardLayout from '../../layouts/DashboardLayout'
 import ContentContainer from '../../components/dashboard/ContentContainer'
 import PipelineTable from '../../components/dashboard/PipelineTable'
 import { getAllCampaigns } from '../../api/campaigns'
+=======
+import { Container } from '@chakra-ui/react';
+import React from 'react';
+import DashboardLayout from '../../layouts/DashboardLayout';
+import ContentContainer from '../../components/dashboard/ContentContainer';
+import PipelineTable from '../../components/dashboard/PipelineTable';
+>>>>>>> d04b438 (prettier setup and formating with it)
 
 const Dashboard = () => {
   const [campaignsData, setCampaigns] = useState(undefined)
@@ -31,9 +39,9 @@ const Dashboard = () => {
         <div>{JSON.stringify(campaignsData, null, 2)}</div>
       )}
     </Container>
-  )
-}
+  );
+};
 
-Dashboard.PageLayout = DashboardLayout
+Dashboard.PageLayout = DashboardLayout;
 
-export default Dashboard
+export default Dashboard;
