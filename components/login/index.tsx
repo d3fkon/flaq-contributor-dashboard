@@ -1,24 +1,19 @@
-<<<<<<< HEAD
-import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react'
-import Image from 'next/image'
-import useAuthenticationStore from '../../stores/authenticationStore'
-import useLoadingStore from '../../stores/loadingStore'
-=======
-import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react';
-import Image from 'next/image';
+import {
+  Flex,
+  Box,
+  Stack,
+  Button,
+  Text,
+  HStack,
+  Image,
+  Hide,
+} from '@chakra-ui/react';
+// import Image from 'next/image';
 import Link from 'next/link';
 import useAuthenticationStore from '../../stores/authenticationStore';
 import useLoadingStore from '../../stores/loadingStore';
->>>>>>> d04b438 (prettier setup and formating with it)
-
 
 export default function LoginCard() {
-<<<<<<< HEAD
-  const isLoading = useLoadingStore((state) => state.isLoading)
-  const toggleLoading = useLoadingStore((state) => state.toggleLoading)
-  const login = useAuthenticationStore((state) => state.login)
-
-=======
   const isLoading = useLoadingStore((state) => state.isLoading);
   const toggleLoading = useLoadingStore((state) => state.toggleLoading);
 
@@ -28,35 +23,50 @@ export default function LoginCard() {
     return <div>...LOADING</div>;
   }
 
->>>>>>> d04b438 (prettier setup and formating with it)
   return (
-    <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'#F8F9FA'}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} align="center">
+    <Flex
+      minH={'100vh'}
+      align={'center'}
+      justify={'center'}
+      background="repeating-linear-gradient(90deg, #B8B8B8 0, #B8B8B8 0.2%, transparent 0, transparent 50%), repeating-linear-gradient(180deg, #B8B8B8 0, #B8B8B8 0.5%, transparent 0, transparent 50%)"
+      backgroundSize="30em 15em"
+      backgroundColor="#ffffff"
+      opacity={1}
+      position="relative">
+      <Stack
+        spacing={8}
+        mx={'auto'}
+        maxW={'525px'}
+        py={12}
+        align="center"
+        zIndex="5">
         <HStack>
-          <Image width={'50'} height="50" src={'/img/logo.svg'} />
-          <Box>
-            <Text
-              fontFamily={'Poppins'}
-              fontWeight="700"
-              fontSize={'24px'}
-              color={'#ffffff'}>
-              Flaq
-            </Text>
-          </Box>
+          <Image width={'50'} height="50" src={'/img/flaq-logo-gray.svg'} />
         </HStack>
-        <Box rounded={'md'} bg={'#414141'} boxShadow={'lg'} p={8}>
+        <Box py={8}>
           <Stack spacing={4}>
-            <Stack spacing={10} textAlign="center">
+            <Stack spacing={10} textAlign="center" alignItems={'center'}>
               <Text
                 fontFamily={'Poppins'}
-                fontWeight="700"
-                color={'#ffffff'}
-                fontSize={'24px'}>
-                Welcome to the flaq academy
+                fontWeight="600"
+                lineHeight={'100px'}
+                textShadow="-2px -2px 2px rgba(47, 47, 47, 1)"
+                fontSize={'67px'}
+                color={'#3D3D3D'}>
+                welcome to the flaq academy
               </Text>
 
               <Button
-                bg={'#7C3AED'}
+                fontFamily={'Montserrat'}
+                fontSize={'22px'}
+                borderRadius={'20px'}
+                py="6"
+                px="10"
+                lineHeight={'27px'}
+                mx="auto"
+                w={'fit-content'}
+                fontWeight="700"
+                bg={'#5865F2'}
                 color={'white'}
                 _hover={{
                   bg: '#9463e8',
@@ -64,17 +74,81 @@ export default function LoginCard() {
                 onClick={login}
                 leftIcon={
                   <Image
-                    width={'20'}
-                    height="20"
+                    width={'20px'}
+                    height="20px"
                     src={'/img/discord-white.svg'}
                   />
                 }>
-                Connect with Discord
+                Connect with discord
               </Button>
             </Stack>
           </Stack>
         </Box>
       </Stack>
+      <Hide below="md">
+        <Box position={'absolute'} zIndex="1" width={'100%'} height={'100%'}>
+          <Box position={'absolute'} top={'1rem'} right={'0rem'}>
+            <Box position={'relative'}>
+              <Image src="/img/login/cube.svg" />
+              <Box
+                position={'absolute'}
+                top="-1rem"
+                left="-16rem"
+                zIndex={'-5'}>
+                <Text
+                  color="#9999A5"
+                  fontSize={'50px'}
+                  fontFamily={'Space Mono'}
+                  fontWeight={400}>
+                  learn web3
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+          <Box bottom={'0rem'} left={'0rem'} position={'absolute'}>
+            <Box position={'relative'}>
+              <Image src="/img/login/brain.svg" />
+              <Box position={'absolute'} top="-2rem" left="3rem" zIndex={'-5'}>
+                <Text
+                  color="#9999A5"
+                  fontSize={'50px'}
+                  fontFamily={'Space Mono'}
+                  fontWeight={400}>
+                  GIGABRAINS
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+          <Box position={'absolute'}>
+            <Box position={'relative'}>
+              <Image src="/img/login/graph.svg" />
+              <Box position={'absolute'} top="15rem" left="2rem" zIndex={'-5'}>
+                <Text
+                  color="#9999A5"
+                  fontSize={'50px'}
+                  fontFamily={'Space Mono'}
+                  fontWeight={400}>
+                  stonks
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+          <Box position={'absolute'} bottom={'0rem'} right={'0rem'}>
+            <Box position={'relative'}>
+              <Image src="/img/login/girl.svg" />
+              <Box position={'absolute'} top="12rem" left="-7rem" zIndex={'-5'}>
+                <Text
+                  color="#9999A5"
+                  fontSize={'50px'}
+                  fontFamily={'Space Mono'}
+                  fontWeight={400}>
+                  chad vibes
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Hide>
     </Flex>
   );
 }

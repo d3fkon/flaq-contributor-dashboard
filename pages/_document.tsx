@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-=======
-import Document, { Html, Head, Main, NextScript } from 'next/document';
->>>>>>> d04b438 (prettier setup and formating with it)
-
 class MyDocument extends Document {
   render() {
     return (
@@ -12,9 +7,8 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-          />
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet"></link>
           <link
             href="http://fonts.cdnfonts.com/css/helvetica-neue-9"
             rel="stylesheet"
