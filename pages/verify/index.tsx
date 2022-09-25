@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { Status, verifyDiscordAuth } from '../../api/authentication'
+
+import { useEffect, useState } from 'react'
+import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication'
+import VerifyLoaderComponent from '../../components/verify'
 import useAuthenticationStore from '../../stores/authenticationStore'
 
 const VerifyPage = () => {
@@ -33,8 +35,7 @@ const VerifyPage = () => {
     }
   }, [verficationCode])
 
-  // TODO: UI for the page should be udpated.
-  return <>Verifying your Account, thank you for your patience.</>
+  return <><VerifyLoaderComponent /></>
 }
 
 export default VerifyPage
