@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication'
+import VerifyLoaderComponent from '../../components/verify'
 import useAuthenticationStore from '../../stores/authenticationStore'
 
 // export const getServerSideProps = async (context: any) => {
@@ -67,7 +68,7 @@ const verifyPage = () => {
     }
   }, [router.query.code])
 
-  return <>Verifying your Account, thank you for your patience.</>
+  return <><VerifyLoaderComponent /></>
 }
 
 export default verifyPage
