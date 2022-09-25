@@ -1,8 +1,12 @@
 import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import useAuthenticationStore from '../../stores/authenticationStore'
+import useLoadingStore from '../../stores/loadingStore'
 
-export default function SimpleCard() {
+
+export default function LoginCard() {
+  const isLoading = useLoadingStore((state) => state.isLoading)
+  const toggleLoading = useLoadingStore((state) => state.toggleLoading)
   const login = useAuthenticationStore((state) => state.login)
 
   return (
