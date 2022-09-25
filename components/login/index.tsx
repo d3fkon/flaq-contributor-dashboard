@@ -1,17 +1,17 @@
-import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react'
-import Image from 'next/image'
-import Link from 'next/link'
-import useAuthenticationStore from '../../stores/authenticationStore'
-import useLoadingStore from '../../stores/loadingStore'
+import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import useAuthenticationStore from '../../stores/authenticationStore';
+import useLoadingStore from '../../stores/loadingStore';
 
 export default function LoginCard() {
-  const isLoading = useLoadingStore((state) => state.isLoading)
-  const toggleLoading = useLoadingStore((state) => state.toggleLoading)
+  const isLoading = useLoadingStore((state) => state.isLoading);
+  const toggleLoading = useLoadingStore((state) => state.toggleLoading);
 
-  const login = useAuthenticationStore((state) => state.login)
+  const login = useAuthenticationStore((state) => state.login);
 
   if (isLoading) {
-    return <div>...LOADING</div>
+    return <div>...LOADING</div>;
   }
 
   return (
@@ -24,8 +24,7 @@ export default function LoginCard() {
               fontFamily={'Poppins'}
               fontWeight="700"
               fontSize={'24px'}
-              color={'#ffffff'}
-            >
+              color={'#ffffff'}>
               Flaq
             </Text>
           </Box>
@@ -37,8 +36,7 @@ export default function LoginCard() {
                 fontFamily={'Poppins'}
                 fontWeight="700"
                 color={'#ffffff'}
-                fontSize={'24px'}
-              >
+                fontSize={'24px'}>
                 Welcome to the flaq academy
               </Text>
 
@@ -55,8 +53,7 @@ export default function LoginCard() {
                     height="20"
                     src={'/img/discord-white.svg'}
                   />
-                }
-              >
+                }>
                 Connect with Discord
               </Button>
             </Stack>
@@ -64,5 +61,5 @@ export default function LoginCard() {
         </Box>
       </Stack>
     </Flex>
-  )
+  );
 }

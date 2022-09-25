@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react';
 import {
   IconButton,
   Box,
@@ -16,52 +16,52 @@ import {
   HStack,
   Center,
   Button,
-} from '@chakra-ui/react'
-import Image from 'next/image'
-import NextLink from 'next/link'
-import { FiHome, FiSettings, FiMenu } from 'react-icons/fi'
+} from '@chakra-ui/react';
+import Image from 'next/image';
+import NextLink from 'next/link';
+import { FiHome, FiSettings, FiMenu } from 'react-icons/fi';
 import {
   BsCalendar2Event,
   BsFillPersonFill,
   BsCreditCard2BackFill,
   BsBoxArrowDownLeft,
-} from 'react-icons/bs'
-import { IoIosHome } from 'react-icons/io'
-import { IconType } from 'react-icons'
-import { IoIosStats, IoIosBuild, IoIosRocket } from 'react-icons/io'
-import { ReactText } from 'react'
-import TwitterCard from '../components/Sidebar/TwitterCard'
-import useAuthenticationStore from '../stores/authenticationStore'
-import { AuthData } from '../api/authentication'
+} from 'react-icons/bs';
+import { IoIosHome } from 'react-icons/io';
+import { IconType } from 'react-icons';
+import { IoIosStats, IoIosBuild, IoIosRocket } from 'react-icons/io';
+import { ReactText } from 'react';
+import TwitterCard from '../components/Sidebar/TwitterCard';
+import useAuthenticationStore from '../stores/authenticationStore';
+import { AuthData } from '../api/authentication';
 // import RightSideBar from "../components/dashboard/RightSideBar";
 
 interface LinkItemProps {
-  name: string
-  icon: IconType
-  href: string
+  name: string;
+  icon: IconType;
+  href: string;
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Dashboard', icon: IoIosHome, href: '/' },
   { name: 'Events', icon: IoIosStats, href: '/events' },
   { name: 'Library', icon: BsCreditCard2BackFill, href: '/library' },
   { name: 'Newsletter', icon: IoIosBuild, href: '/newsletter' },
-]
+];
 const OtherItems: Array<LinkItemProps> = [
   { name: 'Profile', icon: BsFillPersonFill, href: '/profile' },
   { name: 'Refer', icon: IoIosRocket, href: '/refer' },
-]
+];
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { logout, reset } = useAuthenticationStore()
-  const authData = useAuthenticationStore((state) => state.authData)
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { logout, reset } = useAuthenticationStore();
+  const authData = useAuthenticationStore((state) => state.authData);
 
   // To make sure there's no data mismatch between the server and the client, local state is used to store the auth data.
-  const [data, setData] = useState<AuthData>()
+  const [data, setData] = useState<AuthData>();
 
   useEffect(() => {
     // TODO: can create a custom hook to return this data or push to login page.
-    setData(authData)
-  }, [authData])
+    setData(authData);
+  }, [authData]);
 
   // TODO: This should be a component, use hook to check if data is there and push to login page.
   if (data?.accessToken === undefined) {
@@ -70,7 +70,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <div>Not permitted to access this route</div>
         <Link href={'/'}>go back to Login</Link>
       </>
-    )
+    );
   }
 
   return (
@@ -86,8 +86,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full"
-      >
+        size="full">
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
@@ -98,23 +97,22 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         {children}
       </Box>
     </Box>
-  )
+  );
 }
 
 interface SidebarProps extends BoxProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-  const { logout, reset } = useAuthenticationStore()
+  const { logout, reset } = useAuthenticationStore();
   return (
     <Box
       bg={'#F8F9FA'}
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}
-    >
+      {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Box>
           <Text
@@ -122,8 +120,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             fontWeight="700"
             fontSize={'14px'}
             color={'#2D3748'}
-            lineHeight={'21px'}
-          >
+            lineHeight={'21px'}>
             Flaq Academy
           </Text>
         </Box>
@@ -145,8 +142,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           fontSize="12px"
           fontWeight="700"
           fontFamily={'Helvetica'}
-          color="#2D3748"
-        >
+          color="#2D3748">
           Other
         </Text>
       </Box>
@@ -158,13 +154,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <TwitterCard />
       <Button onClick={logout}>Login</Button>
     </Box>
-  )
-}
+  );
+};
 
 interface NavItemProps extends FlexProps {
-  icon: IconType
-  children: ReactText
-  href: string
+  icon: IconType;
+  children: ReactText;
+  href: string;
 }
 const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
   return (
@@ -174,14 +170,12 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
         _hover={{
           boxShadow: '0px 3.5px 5.5px rgba(0, 0, 0, 0.02)',
           bg: '#ffffff',
-        }}
-      >
+        }}>
         <NextLink href={`/dashboard${href}`}>
           <Link
             color="#A0AEC0"
             style={{ textDecoration: 'none' }}
-            _focus={{ boxShadow: 'none' }}
-          >
+            _focus={{ boxShadow: 'none' }}>
             <Flex
               align="center"
               p="2"
@@ -189,8 +183,7 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
               borderRadius="lg"
               role="group"
               cursor="pointer"
-              {...rest}
-            >
+              {...rest}>
               <Box
                 boxShadow="0px 3.5px 5.5px rgba(0, 0, 0, 0.02)"
                 borderRadius={'12px'}
@@ -200,16 +193,14 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
                 mr="4"
                 width={'30px'}
                 height={'30px'}
-                bg="white"
-              >
+                bg="white">
                 <Icon fontSize="15" color={'#818BF5'} as={icon} />
               </Box>
               <Text
                 fontFamily={'Helvetica'}
                 color="#A0AEC0"
                 fontWeight={'700'}
-                fontSize={'12px'}
-              >
+                fontSize={'12px'}>
                 {children}
               </Text>
             </Flex>
@@ -217,11 +208,11 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
         </NextLink>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 interface MobileProps extends FlexProps {
-  onOpen: () => void
+  onOpen: () => void;
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   return (
@@ -234,8 +225,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       bg={'#F8F9FA'}
       borderBottomWidth="1px"
       borderBottomColor={'#4c4646'}
-      {...rest}
-    >
+      {...rest}>
       <IconButton
         variant="outline"
         onClick={onOpen}
@@ -251,12 +241,11 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             fontFamily={'Poppins'}
             fontWeight="700"
             fontSize={'24px'}
-            color={'#ffffff'}
-          >
+            color={'#ffffff'}>
             Flaq
           </Text>
         </Box>
       </HStack>
     </Flex>
-  )
-}
+  );
+};

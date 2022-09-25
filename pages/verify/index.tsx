@@ -1,9 +1,9 @@
-import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication'
-import VerifyLoaderComponent from '../../components/verify'
-import useAuthenticationStore from '../../stores/authenticationStore'
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication';
+import VerifyLoaderComponent from '../../components/verify';
+import useAuthenticationStore from '../../stores/authenticationStore';
 
 // export const getServerSideProps = async (context: any) => {
 //   const { query } = context
@@ -40,35 +40,39 @@ import useAuthenticationStore from '../../stores/authenticationStore'
 // }
 
 const verifyPage = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const verify = async (code: string) => {
-      const response = await verifyDiscordAuth(code)
+      const response = await verifyDiscordAuth(code);
 
       if (response.status === Status.Success) {
         useAuthenticationStore.setState({
           isLoggedIn: true,
           authData: response.data,
-        })
-        router.push('/dashboard')
+        });
+        router.push('/dashboard');
       }
 
       if (response.status === Status.BadRequest) {
         useAuthenticationStore.setState({
           isLoggedIn: false,
           errorMessage: response.data.message,
-        })
-        router.push('/')
+        });
+        router.push('/');
       }
-    }
+    };
 
     if (router.query.code !== undefined) {
-      verify(router.query.code as string)
+      verify(router.query.code as string);
     }
-  }, [router.query.code])
+  }, [router.query.code]);
 
-  return <><VerifyLoaderComponent /></>
-}
+  return (
+    <>
+      <VerifyLoaderComponent />
+    </>
+  );
+};
 
-export default verifyPage
+export default verifyPage;
