@@ -19,13 +19,8 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { FiHome, FiSettings, FiMenu } from 'react-icons/fi'
-import {
-  BsCalendar2Event,
-  BsFillPersonFill,
-  BsCreditCard2BackFill,
-  BsBoxArrowDownLeft,
-} from 'react-icons/bs'
+import { FiMenu } from 'react-icons/fi'
+import { BsFillPersonFill, BsCreditCard2BackFill } from 'react-icons/bs'
 import { IoIosHome } from 'react-icons/io'
 import { IconType } from 'react-icons'
 import { IoIosStats, IoIosBuild, IoIosRocket } from 'react-icons/io'
@@ -33,8 +28,6 @@ import { ReactText } from 'react'
 import TwitterCard from '../components/Sidebar/TwitterCard'
 import useAuthenticationStore from '../stores/authenticationStore'
 import { AuthData } from '../api/authentication'
-// import RightSideBar from "../components/dashboard/RightSideBar";
-
 interface LinkItemProps {
   name: string
   icon: IconType
@@ -52,7 +45,6 @@ const OtherItems: Array<LinkItemProps> = [
 ]
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { logout, reset } = useAuthenticationStore()
   const authData = useAuthenticationStore((state) => state.authData)
 
   // To make sure there's no data mismatch between the server and the client, local state is used to store the auth data.
@@ -106,7 +98,7 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-  const { logout, reset } = useAuthenticationStore()
+  const { logout } = useAuthenticationStore()
   return (
     <Box
       bg={'#F8F9FA'}
@@ -156,7 +148,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </NavItem>
       ))}
       <TwitterCard />
-      <Button onClick={logout}>Login</Button>
+
+      {/* TODO: Clear proper UI for this. */}
+      <Button onClick={logout}>Logout</Button>
     </Box>
   )
 }

@@ -1,6 +1,11 @@
-import { flaqAxios } from "./config/axios"
+import { flaqAxios } from "./config/axios";
 
 export const getAllCampaigns = async () => {
-    const response = await flaqAxios().get("/campaigns/all")
-    console.log({response})
-}
+  try {
+    const response = await flaqAxios().get("/campaigns/all");
+    console.log({ response });
+    return response.data;
+  } catch (e) {
+    console.log({ e });
+  }
+};

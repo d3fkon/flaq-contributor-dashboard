@@ -7,58 +7,58 @@ import {
   AvatarGroup,
   Avatar,
   Icon,
-} from "@chakra-ui/react";
-import React from "react";
-import Image from "next/image";
-import cardimg from "../../public/img/cardimg.png";
-import { BsPlusLg } from "react-icons/bs";
+} from '@chakra-ui/react'
+import React from 'react'
+import Image from 'next/image'
+import cardimg from '../../public/img/cardimg.png'
+import { BsPlusLg } from 'react-icons/bs'
 const ContentCard = () => {
   return (
-    <Box m="3" maxW="350" w="100%" width={"370px"} height={"353px"}>
+    <Box m="3" maxW="350" w="100%" width={'370px'} height={'353px'}>
       <VStack>
         <Box>
           <Image width="370" height="191" src={cardimg} />
         </Box>
         <Box>
           <Text
-            color={"#A0AEC0"}
-            fontFamily={"Helvetica"}
-            fontSize={"10px"}
-            fontWeight={"400"}
+            color={'#A0AEC0'}
+            fontFamily={'Helvetica'}
+            fontSize={'10px'}
+            fontWeight={'400'}
           >
             Video
           </Text>
           <Text
-            color={"#2D3748"}
-            fontFamily={"Helvetica"}
-            fontSize={"18px"}
+            color={'#2D3748'}
+            fontFamily={'Helvetica'}
+            fontSize={'18px'}
             fontWeight={700}
           >
             Neo Blockchain & Future
           </Text>
           <Text
             mt="2"
-            color={"#A0AEC0"}
-            fontFamily={"Helvetica"}
-            fontSize={"12px"}
-            fontWeight={"400"}
-            lineHeight={"18px"}
+            color={'#A0AEC0'}
+            fontFamily={'Helvetica'}
+            fontSize={'12px'}
+            fontWeight={'400'}
+            lineHeight={'18px'}
           >
             A short video on why Neo Blockchain is potentially the biggest
             player in the industy now
           </Text>
         </Box>
         <Box w="100%" pt="5">
-          <Flex direction="row" justifyContent={"space-between"}>
+          <Flex direction="row" justifyContent={'space-between'}>
             <Box>
               <Button
-                fontFamily={"Helvetica"}
-                fontSize={"10px"}
-                fontWeight={"700"}
-                variant={"outline"}
+                fontFamily={'Helvetica'}
+                fontSize={'10px'}
+                fontWeight={'700'}
+                variant={'outline'}
                 color="#818BF5"
                 border="1px solid #818BF5"
-                borderRadius={"12px"}
+                borderRadius={'12px'}
                 px="12"
               >
                 VIEW
@@ -89,34 +89,34 @@ const ContentCard = () => {
         </Box>
       </VStack>
     </Box>
-  );
-};
+  )
+}
 
 export const CreateCard = () => {
-  return ( 
-    <Box borderRadius={"12"} border={"2px"} maxW="300" w="100%" height="353">
+  return (
+    <Box borderRadius={'12'} border={'2px'} maxW="300" w="100%" height="353">
       <Box minW="100%" h="100%">
         <Flex
-          direction={"column"}
+          direction={'column'}
           justifyContent="center"
           py="42"
           alignContent="center"
-          alignItems={"center"}
+          alignItems={'center'}
           width="376"
           height="353"
         >
           <Icon as={BsPlusLg} />
           <Text
-            fontFamily={"Helvetica"}
+            fontFamily={'Helvetica'}
             color="#718096"
-            fontSize={"18px"}
-            fontWeight={"700"}
+            fontSize={'18px'}
+            fontWeight={'700'}
           >
             Create
           </Text>
         </Flex>
       </Box>
     </Box>
-  );
-};
-export default ContentCard;
+  )
+}
+export default ContentCard

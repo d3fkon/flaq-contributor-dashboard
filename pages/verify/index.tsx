@@ -1,42 +1,7 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication'
+import { useEffect } from 'react'
+import { Status, verifyDiscordAuth } from '../../api/authentication'
 import useAuthenticationStore from '../../stores/authenticationStore'
-
-// export const getServerSideProps = async (context: any) => {
-//   const { query } = context
-
-//   const response = await verifyDiscordAuth(query.code as string)
-//   console.log(response)
-//   if (response.status === Status.Success) {
-//     useAuthenticationStore.setState({
-//       isLoggedIn: true,
-//       authData: response.data,
-//     })
-
-//     return {
-//       redirect: {
-//         destination: '/dashboard',
-//         permanent: false,
-//       },
-//     }
-//   }
-
-//   if (response.status === Status.BadRequest) {
-//     useAuthenticationStore.setState({
-//       isLoggedIn: false,
-//       errorMessage: response.data.message,
-//     })
-
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     }
-//   }
-// }
 
 const verifyPage = () => {
   const router = useRouter()
@@ -67,6 +32,7 @@ const verifyPage = () => {
     }
   }, [router.query.code])
 
+  // TODO: UI for the page should be udpated.
   return <>Verifying your Account, thank you for your patience.</>
 }
 

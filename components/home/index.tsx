@@ -1,18 +1,9 @@
 import { Flex, Box, Stack, Button, Text, HStack } from '@chakra-ui/react'
 import Image from 'next/image'
-import Link from 'next/link'
 import useAuthenticationStore from '../../stores/authenticationStore'
-import useLoadingStore from '../../stores/loadingStore'
 
 export default function SimpleCard() {
-  const isLoading = useLoadingStore((state) => state.isLoading)
-  const toggleLoading = useLoadingStore((state) => state.toggleLoading)
-
   const login = useAuthenticationStore((state) => state.login)
-
-  if (isLoading) {
-    return <div>...LOADING</div>
-  }
 
   return (
     <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'#F8F9FA'}>
