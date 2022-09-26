@@ -25,6 +25,8 @@ const Dashboard = () => {
     <Container mt="18" border="2" mx="0" maxW="100%">
       <ContentContainer />
       <PipelineTable />
+
+      {/* Handle the campaigns data based on the business requirments.  */}
       {campaignsData !== undefined && (
         <div>{JSON.stringify(campaignsData, null, 2)}</div>
       )}

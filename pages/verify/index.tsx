@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { Status, verifyDiscordAuth } from '../../api/authentication'
 import useAuthenticationStore from '../../stores/authenticationStore'
 
-const verifyPage = () => {
+const VerifyPage = () => {
   const router = useRouter()
+  const verficationCode = router.query.code as string
 
   useEffect(() => {
     const verify = async (code: string) => {
@@ -27,13 +28,13 @@ const verifyPage = () => {
       }
     }
 
-    if (router.query.code !== undefined) {
-      verify(router.query.code as string)
+    if (verficationCode !== undefined) {
+      verify(verficationCode as string)
     }
-  }, [router.query.code])
+  }, [verficationCode])
 
   // TODO: UI for the page should be udpated.
   return <>Verifying your Account, thank you for your patience.</>
 }
 
-export default verifyPage
+export default VerifyPage
