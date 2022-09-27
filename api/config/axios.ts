@@ -1,10 +1,9 @@
-import axios from "axios";
-import { isDevelopementEnvironment } from "../../utils/devDetect";
-import { AxiosError, AxiosRequestConfig } from "axios";
-import useAuthenticationStore from "../../stores/authenticationStore";
-import getConfig from "next/config";
-import { Roles } from "../authentication";
-
+import axios from 'axios';
+import { isDevelopementEnvironment } from '../../utils/devDetect';
+import { AxiosError, AxiosRequestConfig } from 'axios';
+import useAuthenticationStore from '../../stores/authenticationStore';
+import getConfig from 'next/config';
+import { Roles } from '../authentication';
 // For using the ENV variables in the client side.
 const { publicRuntimeConfig } = getConfig();
 
@@ -21,18 +20,18 @@ const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
 
   if (accessToken !== undefined) {
     if (role === Roles.ADMIN) {
-      config.headers!["x-admin-access-token"] = `${accessToken}`;
+      config.headers!['x-admin-access-token'] = `${accessToken}`;
     } else {
-      config.headers!["x-creator-access-token"] = `${accessToken}`;
+      config.headers!['x-creator-access-token'] = `${accessToken}`;
     }
   } else {
-    if (config.url !== "/auth/discord-auth") {
+    if (config.url !== '/auth/discord-auth') {
       // If the user is not authenticated and the request is not for the discord auth, then redirect to the login page.
-      console.error("Unauthorized request");
-      window.location.replace("/");
+      console.error('Unauthorized request');
+      window.location.replace('/');
     } else {
       // ALlow Login API.
-      console.info("Logging in..."); // General logging.
+      console.info('Logging in...'); // General logging.
     }
   }
 

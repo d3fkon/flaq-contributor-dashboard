@@ -1,5 +1,5 @@
-import { flaqAxios } from "./config/axios";
-import { AxiosError } from "axios";
+import { flaqAxios } from './config/axios';
+import { AxiosError } from 'axios';
 
 export enum Status {
   Success = 200,
@@ -19,26 +19,20 @@ export type AuthenticationFailure = {
 };
 
 export enum Roles {
-  ADMIN = "admin",
-  CREATOR = "creator",
+  ADMIN = 'admin',
+  CREATOR = 'creator',
 }
 export interface AuthData {
   role: Roles | undefined;
   accessToken: string | undefined;
   refreshToken: string | undefined;
 }
+export type roles = 'Admin' | 'Creator' | undefined;
 
 export type Response =
   | { status: Status.Success; data: AuthData }
   | { status: Status.BadRequest; data: AuthenticationFailure }
   | { status: Status.Unauthorized; data: AuthenticationFailure };
-
-/**
- * Verify Discord authentication code and get access token.
- * @param {number} code Discord authentication code.
- * @returns {string} Access token.
- *
- */
 
 export const verifyDiscordAuth = async (code: string): Promise<Response> => {
   try {
@@ -54,7 +48,7 @@ export const verifyDiscordAuth = async (code: string): Promise<Response> => {
           status: Status.BadRequest,
           data: {
             reason: FailedAuthenticationReason.InvalidCode,
-            message: "Invalid code",
+            message: 'Invalid code',
           },
         };
       }
@@ -63,7 +57,7 @@ export const verifyDiscordAuth = async (code: string): Promise<Response> => {
       status: Status.Unauthorized,
       data: {
         reason: FailedAuthenticationReason.Unkown,
-        message: "Unknown error occured.",
+        message: 'Unknown error occured.',
       },
     };
   }

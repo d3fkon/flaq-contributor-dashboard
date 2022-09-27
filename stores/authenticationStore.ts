@@ -1,8 +1,8 @@
-import create from "zustand";
-import { persist } from "zustand/middleware";
-import { AuthData } from "../api/authentication";
-import { isDevelopementEnvironment } from "../utils/devDetect";
-import getConfig from "next/config";
+import create, { StateCreator } from 'zustand';
+import { persist, devtools } from 'zustand/middleware';
+import { AuthData, Status, verifyDiscordAuth } from '../api/authentication';
+import { isDevelopementEnvironment } from '../utils/devDetect';
+import getConfig from 'next/config';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -14,6 +14,7 @@ export interface AuthState {
 
 export interface AuthActions {
   login: () => void;
+  // verifyDiscordAuth: (code: string) => Promise<void>;
   setAuthState: (authData: AuthData) => void;
   setErrorMessage: (message: string) => void;
   logout: () => void;
@@ -61,7 +62,7 @@ export const useAuthenticationStore = create<AuthState & AuthActions>()(
       },
     }),
     {
-      name: "authentication",
+      name: 'authentication',
     }
   )
 );

@@ -8,4 +8,4 @@ export const getAllCampaigns = async () => {
   } catch (e) {
     console.log({ e });
   }
-};
+}

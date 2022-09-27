@@ -10,9 +10,9 @@ import {
   Tr,
   Tbody,
   Td,
-} from '@chakra-ui/react'
-import React from 'react'
-import { BsCheckCircleFill } from 'react-icons/bs'
+} from '@chakra-ui/react';
+import React from 'react';
+import { BsCheckCircleFill } from 'react-icons/bs';
 
 const PipelineTable = () => {
   const pipelineData = [
@@ -59,23 +59,20 @@ const PipelineTable = () => {
       p="5"
       my="4"
       borderRadius={'8'}
-      maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}
-    >
+      maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}>
       <Box minW="100%" minH="100%">
         <Text
           fontSize="18px"
           fontFamily={'Helvetica'}
           fontWeight={'700'}
-          color="#818BF5"
-        >
+          color="#818BF5">
           Pipeline
         </Text>
         <Text
           fontSize="14px"
           fontFamily={'Helvetica'}
           fontWeight={'400'}
-          color="#A0AEC0"
-        >
+          color="#A0AEC0">
           <Icon mx="1" color="#68D391" as={BsCheckCircleFill} /> 4 awaiting
           approval
         </Text>
@@ -90,8 +87,7 @@ const PipelineTable = () => {
                   fontFamily={'Helvetica'}
                   fontWeight={'400'}
                   color="#A0AEC0"
-                  textAlign={'left'}
-                >
+                  textAlign={'left'}>
                   Content
                 </Th>
                 <Th
@@ -99,8 +95,7 @@ const PipelineTable = () => {
                   fontFamily={'Helvetica'}
                   fontWeight={'400'}
                   color="#A0AEC0"
-                  textAlign={'center'}
-                >
+                  textAlign={'center'}>
                   Auther
                 </Th>
                 <Th
@@ -108,8 +103,7 @@ const PipelineTable = () => {
                   fontFamily={'Helvetica'}
                   fontWeight={'400'}
                   color="#A0AEC0"
-                  textAlign={'center'}
-                >
+                  textAlign={'center'}>
                   Status
                 </Th>
                 <Th
@@ -117,8 +111,7 @@ const PipelineTable = () => {
                   fontFamily={'Helvetica'}
                   fontWeight={'400'}
                   color="#A0AEC0"
-                  textAlign={'center'}
-                >
+                  textAlign={'center'}>
                   Date
                 </Th>
               </Tr>
@@ -133,8 +126,7 @@ const PipelineTable = () => {
                       fontWeight={'700'}
                       color="#2D3748"
                       lineHeight={'20px'}
-                      textAlign="left"
-                    >
+                      textAlign="left">
                       {data.content}
                     </Td>
                     <Td
@@ -143,8 +135,7 @@ const PipelineTable = () => {
                       fontWeight={'700'}
                       color="#2D3748"
                       lineHeight={'20px'}
-                      textAlign="center"
-                    >
+                      textAlign="center">
                       {data.auther}
                     </Td>
                     <Td
@@ -153,8 +144,7 @@ const PipelineTable = () => {
                       fontWeight={'700'}
                       color="#2D3748"
                       lineHeight={'20px'}
-                      textAlign="center"
-                    >
+                      textAlign="center">
                       {data.status}
                     </Td>
                     <Td
@@ -163,8 +153,7 @@ const PipelineTable = () => {
                       fontWeight={'700'}
                       color="#2D3748"
                       lineHeight={'20px'}
-                      textAlign="center"
-                    >
+                      textAlign="center">
                       {data.date}
                     </Td>{' '}
                   </Tr>
