@@ -16,20 +16,6 @@ import {
   HStack,
   Center,
   Button,
-<<<<<<< HEAD
-} from '@chakra-ui/react'
-import Image from 'next/image'
-import NextLink from 'next/link'
-import { FiMenu } from 'react-icons/fi'
-import { BsFillPersonFill, BsCreditCard2BackFill } from 'react-icons/bs'
-import { IoIosHome } from 'react-icons/io'
-import { IconType } from 'react-icons'
-import { IoIosStats, IoIosBuild, IoIosRocket } from 'react-icons/io'
-import { ReactText } from 'react'
-import TwitterCard from '../components/Sidebar/TwitterCard'
-import useAuthenticationStore from '../stores/authenticationStore'
-import { AuthData } from '../api/authentication'
-=======
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -49,7 +35,6 @@ import useAuthenticationStore from '../stores/authenticationStore';
 import { AuthData } from '../api/authentication';
 // import RightSideBar from "../components/dashboard/RightSideBar";
 
->>>>>>> d04b438 (prettier setup and formating with it)
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -66,14 +51,9 @@ const OtherItems: Array<LinkItemProps> = [
   { name: 'Refer', icon: IoIosRocket, href: '/refer' },
 ];
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-<<<<<<< HEAD
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const authData = useAuthenticationStore((state) => state.authData)
-=======
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { logout, reset } = useAuthenticationStore();
   const authData = useAuthenticationStore((state) => state.authData);
->>>>>>> d04b438 (prettier setup and formating with it)
 
   // To make sure there's no data mismatch between the server and the client, local state is used to store the auth data.
   const [data, setData] = useState<AuthData>();
@@ -125,11 +105,7 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-<<<<<<< HEAD
-  const { logout } = useAuthenticationStore()
-=======
   const { logout, reset } = useAuthenticationStore();
->>>>>>> d04b438 (prettier setup and formating with it)
   return (
     <Box
       bg={'#F8F9FA'}
