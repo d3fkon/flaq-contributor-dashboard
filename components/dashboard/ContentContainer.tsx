@@ -27,10 +27,10 @@ const ContentContainer = () => {
       </Box>
       <Box overflow={'scroll'} className="hidescroller">
         <Flex flexWrap={'nowrap'} overflow={'auto'} w="fit-content">
+          <CreateCard />
           {[0, 1, 2, 4, 5].map((idx) => {
             return <ContentCard key={idx} />
           })}
-          <CreateCard />
         </Flex>
       </Box>
     </Container>
