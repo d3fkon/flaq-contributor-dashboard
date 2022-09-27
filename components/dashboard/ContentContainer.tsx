@@ -1,8 +1,24 @@
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
+import ICampaignsData, { ICampaigns } from '../../api/datatypes/Campaigns';
+import { useAxios } from '../../hooks/useAxios';
 import ContentCard, { CreateCard } from './ContentCard';
 
-const ContentContainer = () => {
+function getContentDataUtil(inputdata: Array<ICampaignsData>) {
+  const output: ICampaigns[] = [];
+  inputdata.map((da: ICampaignsData) => {
+    da?.campaigns.map((campaign) => {
+      output.push(campaign);
+    });
+  });
+  return output;
+}
+
+interface IContentContainer {
+  data: Array<ICampaignsData> | undefined;
+}
+
+const ContentContainer = ({ data }: IContentContainer) => {
   return (
     <Container
       bg="white"
@@ -26,15 +42,20 @@ const ContentContainer = () => {
         </Text>
       </Box>
       <Box overflow={'scroll'} className="hidescroller">
-        <Flex flexWrap={'nowrap'} overflow={'auto'} w="fit-content">
+        <Flex
+          className="hidescroller"
+          flexWrap={'nowrap'}
+          overflow={'auto'}
+          w="fit-content">
           <CreateCard />
-          {[0, 1, 2, 4, 5].map((idx) => {
-            return <ContentCard key={idx} />
-          })}
+          {data &&
+            getContentDataUtil(data).map((data: ICampaigns, idx: number) => {
+              return <ContentCard {...data} key={idx} />;
+            })}
         </Flex>
       </Box>
     </Container>
-  )
-}
+  );
+};
 
-export default ContentContainer
+export default ContentContainer;
