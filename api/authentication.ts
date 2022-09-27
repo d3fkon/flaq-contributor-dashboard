@@ -1,5 +1,5 @@
-import { flaqAxios } from "./config/axios";
-import { AxiosError } from "axios";
+import { flaqAxios } from './config/axios';
+import { AxiosError } from 'axios';
 
 export enum Status {
   Success = 200,
@@ -19,51 +19,15 @@ export type AuthenticationFailure = {
 };
 
 export enum Roles {
-  ADMIN = "admin",
-  CREATOR = "creator",
+  ADMIN = 'admin',
+  CREATOR = 'creator',
 }
 export interface AuthData {
   role: Roles | undefined;
   accessToken: string | undefined;
   refreshToken: string | undefined;
 }
-
-export type Response =
-  | { status: Status.Success; data: AuthData }
-  | { status: Status.BadRequest; data: AuthenticationFailure }
-  | { status: Status.Unauthorized; data: AuthenticationFailure };
-
-/**
- * Verify Discord authentication code and get access token.
- * @param {number} code Discord authentication code.
- * @returns {string} Access token.
- *
- */
-
-export enum Status {
-  Success = 200,
-  BadRequest = 400,
-  Unauthorized = 401,
-}
-
-export enum FailedAuthenticationReason {
-  Unkown,
-  DeactivatedUser, // The user exists, but is no longer active.
-  InvalidCode, // The code provided is invalid.
-}
-
-export type AuthenticationFailure = {
-  reason: FailedAuthenticationReason;
-  message: string;
-};
-
 export type roles = 'Admin' | 'Creator' | undefined;
-
-export interface AuthData {
-  role: roles;
-  accessToken: string | undefined;
-  refreshToken: string | undefined;
-}
 
 export type Response =
   | { status: Status.Success; data: AuthData }

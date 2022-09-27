@@ -3,7 +3,7 @@ import { isDevelopementEnvironment } from '../../utils/devDetect';
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import useAuthenticationStore from '../../stores/authenticationStore';
 import getConfig from 'next/config';
-
+import { Roles } from '../authentication';
 // For using the ENV variables in the client side.
 const { publicRuntimeConfig } = getConfig();
 
