@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
-import Image from 'next/image';
 import React from 'react';
 import { BsTwitter } from 'react-icons/bs';
 import twitterbg from '../../public/img/twittercardbg.png';
+
 const TwitterCard = () => {
   return (
     <Box display={'flex'} alignItems="center" justifyContent={'center'}>
@@ -47,7 +47,7 @@ const TwitterCard = () => {
         </Flex>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default TwitterCard
+export default TwitterCard;

@@ -1,14 +1,5 @@
-import {
-  Box,
-  Tab,
-  TabList,
-  Text,
-  Tabs,
-  TabPanels,
-  TabPanel,
-} from '@chakra-ui/react';
+import { Box, Tab, TabList, Text, Tabs, TabPanels } from '@chakra-ui/react';
 import * as React from 'react';
-import { IconType } from 'react-icons';
 import { BsCameraVideo, BsEmojiSmile } from 'react-icons/bs';
 import { HiPencil } from 'react-icons/hi';
 import ArticleAndVideoTab from './ContentTypeTabs/ArticleAndVideoTab';
@@ -16,6 +7,7 @@ import ArticleTab from './ContentTypeTabs/ArticleTab';
 import VideoTab from './ContentTypeTabs/VideoTab';
 import TabCard from './TabCard';
 import TabContentCard from './TabContentCard';
+
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
@@ -43,7 +35,6 @@ export default function App(props: IAppProps) {
   const [tabIndex, setTabIndex] = React.useState(0);
 
   const handleTabsChange = (index: any) => {
-    console.log(index);
     setTabIndex(index);
   };
   return (

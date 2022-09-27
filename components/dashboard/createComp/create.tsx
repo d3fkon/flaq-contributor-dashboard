@@ -1,9 +1,6 @@
 import React from 'react';
 import {
   Box,
-  Button,
-  CloseButton,
-  Container,
   Divider,
   Flex,
   Icon,
@@ -13,10 +10,10 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import { IoMdClose } from 'react-icons/io';
-import { BsUpload } from 'react-icons/bs';
 import { FiUpload } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 import ContentType from './ContentType';
+
 const Create = () => {
   const router = useRouter();
 

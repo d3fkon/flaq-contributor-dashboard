@@ -7,6 +7,7 @@ interface ITabCard {
   des: string;
   iconBg: string;
 }
+
 const TabCard = ({ title, des, icon, iconBg }: ITabCard) => {
   return (
     <Tab

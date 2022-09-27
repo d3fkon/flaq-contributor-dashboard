@@ -7,11 +7,13 @@ import {
   HStack,
   Image,
   Hide,
+  Container,
+  Center,
 } from '@chakra-ui/react';
-// import Image from 'next/image';
-import Link from 'next/link';
+
 import useAuthenticationStore from '../../stores/authenticationStore';
 import useLoadingStore from '../../stores/loadingStore';
+import spinner from '../../public/img/spinner.svg';
 
 export default function LoginCard() {
   const isLoading = useLoadingStore((state) => state.isLoading);
@@ -20,7 +22,25 @@ export default function LoginCard() {
   const login = useAuthenticationStore((state) => state.login);
 
   if (isLoading) {
-    return <div>...LOADING</div>;
+    return (
+      <Container bg="#F8F9FA" maxW="100%" minH="100vh" h="100%">
+        <Flex
+          direction={'column'}
+          minH="100vh"
+          justifyContent={'center'}
+          alignItems={'center'}>
+          <Box>
+            <Image
+              alt="Flag Logo"
+              width={'50'}
+              height="50"
+              src={'/img/flaq-logo-gray.svg'}
+            />
+          </Box>
+          <Image src={spinner.src} alt="Loading..." />
+        </Flex>
+      </Container>
+    );
   }
 
   return (

@@ -13,6 +13,7 @@ import Image from 'next/image';
 import cardimg from '../../public/img/cardimg.png';
 import { BsPlusLg } from 'react-icons/bs';
 import Link from 'next/link';
+
 const ContentCard = () => {
   return (
     <Box m="3" maxW="350" w="100%" width={'370px'} height={'353px'}>
@@ -86,8 +87,8 @@ const ContentCard = () => {
         </Box>
       </VStack>
     </Box>
-  )
-}
+  );
+};
 
 export const CreateCard = () => {
   return (
@@ -123,4 +124,5 @@ export const CreateCard = () => {
     </Link>
   );
 };
+
 export default ContentCard;

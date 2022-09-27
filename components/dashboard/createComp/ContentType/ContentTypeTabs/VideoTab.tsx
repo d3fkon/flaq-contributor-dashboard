@@ -1,6 +1,7 @@
 import { Box, Button, Icon, Input, Text, Textarea } from '@chakra-ui/react';
 import React from 'react';
 import { BiCheckCircle } from 'react-icons/bi';
+
 type Props = {};
 
 const Video = (props: Props) => {
