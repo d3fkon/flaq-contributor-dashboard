@@ -18,7 +18,12 @@ const VerifyLoaderComponent = () => {
         justifyContent={'center'}
         alignItems={'center'}>
         <Box>
-          <Image width={'50'} height="50" src={'/img/flaq-logo-gray.svg'} />
+          <Image
+            alt="Flag Logo"
+            width={'50'}
+            height="50"
+            src={'/img/flaq-logo-gray.svg'}
+          />
         </Box>
         <Image src={spinner.src} alt="Loading..." />
         <Center>

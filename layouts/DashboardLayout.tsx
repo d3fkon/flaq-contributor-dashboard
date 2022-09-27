@@ -261,7 +261,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       />
 
       <HStack>
-        <Image width={'50'} height="50" src={'/img/logo.svg'} />
+        <Image alt="logo" width={'50'} height="50" src={'/img/logo.svg'} />
         <Box>
           <Text
             fontFamily={'Poppins'}

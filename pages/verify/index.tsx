@@ -1,59 +1,12 @@
-<<<<<<< HEAD
-import { useRouter } from 'next/router'
-
-import { useEffect, useState } from 'react'
-import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication'
-import VerifyLoaderComponent from '../../components/verify'
-import useAuthenticationStore from '../../stores/authenticationStore'
-
-const VerifyPage = () => {
-  const router = useRouter()
-  const verficationCode = router.query.code as string
-=======
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { AuthData, Status, verifyDiscordAuth } from '../../api/authentication';
+import { useEffect } from 'react';
+import { Status, verifyDiscordAuth } from '../../api/authentication';
 import VerifyLoaderComponent from '../../components/verify';
 import useAuthenticationStore from '../../stores/authenticationStore';
 
-// export const getServerSideProps = async (context: any) => {
-//   const { query } = context
-
-//   const response = await verifyDiscordAuth(query.code as string)
-//   console.log(response)
-//   if (response.status === Status.Success) {
-//     useAuthenticationStore.setState({
-//       isLoggedIn: true,
-//       authData: response.data,
-//     })
-
-//     return {
-//       redirect: {
-//         destination: '/dashboard',
-//         permanent: false,
-//       },
-//     }
-//   }
-
-//   if (response.status === Status.BadRequest) {
-//     useAuthenticationStore.setState({
-//       isLoggedIn: false,
-//       errorMessage: response.data.message,
-//     })
-
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     }
-//   }
-// }
-
-const verifyPage = () => {
+const VerifyPage = () => {
   const router = useRouter();
->>>>>>> d04b438 (prettier setup and formating with it)
+  const verficationCode = router.query.code as string;
 
   useEffect(() => {
     const verify = async (code: string) => {
@@ -76,27 +29,15 @@ const verifyPage = () => {
       }
     };
 
-<<<<<<< HEAD
     if (verficationCode !== undefined) {
-      verify(verficationCode as string)
+      verify(verficationCode as string);
     }
-  }, [verficationCode])
-=======
-    if (router.query.code !== undefined) {
-      verify(router.query.code as string);
-    }
-  }, [router.query.code]);
->>>>>>> d04b438 (prettier setup and formating with it)
+  }, [verficationCode]);
 
-  return (
-    <>
-      <VerifyLoaderComponent />
-    </>
-  );
+  // TODO: UI for the page should be udpated.
+  return <>
+  <VerifyLoaderComponent/>
+  </>;
 };
 
-<<<<<<< HEAD
-export default VerifyPage
-=======
-export default verifyPage;
->>>>>>> d04b438 (prettier setup and formating with it)
+export default VerifyPage;

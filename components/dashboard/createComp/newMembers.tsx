@@ -43,7 +43,7 @@ const NewMembers = () => {
       <Box mt="5">
         {data.map((data, idx) => {
           return (
-            <Box>
+            <Box key={idx}>
               <Flex>
                 <Box m="2">
                   <Image
@@ -51,6 +51,7 @@ const NewMembers = () => {
                     w="50px"
                     height="50px"
                     src={data.pfp}
+                    alt="pfp"
                   />
                 </Box>
                 <Box m="2">

@@ -18,7 +18,7 @@ const ContentCard = () => {
     <Box m="3" maxW="350" w="100%" width={'370px'} height={'353px'}>
       <VStack>
         <Box>
-          <Image width="370" height="191" src={cardimg} />
+          <Image alt="banner img" width="370" height="191" src={cardimg} />
         </Box>
         <Box>
           <Text

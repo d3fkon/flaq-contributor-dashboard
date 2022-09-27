@@ -41,7 +41,12 @@ export default function LoginCard() {
         align="center"
         zIndex="5">
         <HStack>
-          <Image width={'50'} height="50" src={'/img/flaq-logo-gray.svg'} />
+          <Image
+            alt="logo"
+            width={'50'}
+            height="50"
+            src={'/img/flaq-logo-gray.svg'}
+          />
         </HStack>
         <Box py={8}>
           <Stack spacing={4}>
@@ -74,6 +79,7 @@ export default function LoginCard() {
                 onClick={login}
                 leftIcon={
                   <Image
+                    alt="discord logo"
                     width={'20px'}
                     height="20px"
                     src={'/img/discord-white.svg'}
@@ -89,7 +95,7 @@ export default function LoginCard() {
         <Box position={'absolute'} zIndex="1" width={'100%'} height={'100%'}>
           <Box position={'absolute'} top={'1rem'} right={'0rem'}>
             <Box position={'relative'}>
-              <Image src="/img/login/cube.svg" />
+              <Image alt="cube" src="/img/login/cube.svg" />
               <Box
                 position={'absolute'}
                 top="-1rem"
@@ -107,7 +113,7 @@ export default function LoginCard() {
           </Box>
           <Box bottom={'0rem'} left={'0rem'} position={'absolute'}>
             <Box position={'relative'}>
-              <Image src="/img/login/brain.svg" />
+              <Image alt="brain" src="/img/login/brain.svg" />
               <Box position={'absolute'} top="-2rem" left="3rem" zIndex={'-5'}>
                 <Text
                   color="#9999A5"
@@ -121,7 +127,7 @@ export default function LoginCard() {
           </Box>
           <Box position={'absolute'}>
             <Box position={'relative'}>
-              <Image src="/img/login/graph.svg" />
+              <Image alt="graph" src="/img/login/graph.svg" />
               <Box position={'absolute'} top="15rem" left="2rem" zIndex={'-5'}>
                 <Text
                   color="#9999A5"
@@ -135,7 +141,7 @@ export default function LoginCard() {
           </Box>
           <Box position={'absolute'} bottom={'0rem'} right={'0rem'}>
             <Box position={'relative'}>
-              <Image src="/img/login/girl.svg" />
+              <Image alt="girl img" src="/img/login/girl.svg" />
               <Box position={'absolute'} top="12rem" left="-7rem" zIndex={'-5'}>
                 <Text
                   color="#9999A5"
