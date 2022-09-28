@@ -126,7 +126,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontWeight={'400'}
                       color="#A0AEC0"
                       textAlign={'center'}>
-                      Auther
+                      Content Type
                     </Th>
                     <Th
                       fontSize="10px"
@@ -162,15 +162,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="left">
-                              <Flex>
-                                <Image
-                                  src={data.image}
-                                  width={'20px'}
-                                  height={'20px'}
-                                  mx="1"
-                                />
-                                <Text as="span">{data.title}</Text>
-                              </Flex>
+                              {data.title}
                             </Td>
                             <Td
                               fontSize="14px"
@@ -179,7 +171,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="center">
-                              {data.username}
+                              {data.contentType}
                             </Td>
                             <Td
                               fontSize="14px"
@@ -242,7 +234,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontWeight={'400'}
                       color="#A0AEC0"
                       textAlign={'center'}>
-                      Auther
+                      Content Type
                     </Th>
                     <Th
                       fontSize="10px"
@@ -278,15 +270,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="left">
-                              <Flex>
-                                <Image
-                                  src={data.image}
-                                  width={'20px'}
-                                  height={'20px'}
-                                  mx="1"
-                                />
-                                <Text as="span">{data.title}</Text>
-                              </Flex>
+                              {data.title}
                             </Td>
                             <Td
                               fontSize="14px"
@@ -295,7 +279,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="center">
-                              {data.username}
+                              {data.contentType}
                             </Td>
                             <Td
                               fontSize="14px"

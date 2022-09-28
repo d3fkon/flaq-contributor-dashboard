@@ -36,8 +36,6 @@ const Create = () => {
 
   const onSubmit = async (Formdata: any) => {
     console.log(Formdata);
-    const imageUrlsData = await uploadFile(imageUpload);
-    setValue('image', imageUrlsData.url);
     sendData({ data: Formdata });
   };
 
@@ -73,7 +71,7 @@ const Create = () => {
               </Text>
             </Box>
             <Flex direction={'row'} p="3" mt="4">
-              <UploadImageComp setImageUpload={setImageUpload} />
+              <UploadImageComp setValue={setValue} />
               <Box m="3" px="6">
                 <Box>
                   <Text variant={'inputlabel'} w="350px">

@@ -8,6 +8,7 @@ export interface ArticlesType {
   url: string;
   desc: string;
   title: string;
+  iconUrl: string;
 }
 export interface CreateContentFormData {
   description1: string;

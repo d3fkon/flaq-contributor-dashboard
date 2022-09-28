@@ -37,7 +37,7 @@ export default function App({ register, setValue, control }: IAppProps) {
       icon: BsEmojiSmile,
       des: 'go all out record and write',
       bg: '#8133FF',
-      contentType: 'VideoArticles',
+      contentType: 'VideoAndArticles',
     },
   ];
   const [tabIndex, setTabIndex] = React.useState(0);
@@ -50,7 +50,7 @@ export default function App({ register, setValue, control }: IAppProps) {
     <Box p="4">
       <input
         {...register('contentType')}
-        defaultValue="video"
+        defaultValue="Video"
         style={{ display: 'none' }}
       />
       <Text
@@ -80,10 +80,14 @@ export default function App({ register, setValue, control }: IAppProps) {
               <VideoTab register={register} control={control} />
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <ArticleTab control={control} register={register} />
+              <ArticleTab
+                control={control}
+                register={register}
+                setValue={setValue}
+              />
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <ArticleAndVideoTab register={register} />
+              <ArticleAndVideoTab register={register} setValue={setValue} />
             </TabContentCard>
           </TabPanels>
         </Tabs>
