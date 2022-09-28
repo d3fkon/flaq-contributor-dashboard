@@ -1,7 +1,6 @@
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import ICampaignsData, { ICampaigns } from '../../api/datatypes/Campaigns';
-import { useAxios } from '../../hooks/useAxios';
 import ContentCard, { CreateCard } from './ContentCard';
 
 function getContentDataUtil(inputdata: Array<ICampaignsData>) {
