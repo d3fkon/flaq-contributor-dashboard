@@ -6,20 +6,27 @@ import {
   Flex,
   AvatarGroup,
   Avatar,
+  Image,
   Icon,
 } from '@chakra-ui/react';
 import React from 'react';
-import Image from 'next/image';
 import cardimg from '../../public/img/cardimg.png';
 import { BsPlusLg } from 'react-icons/bs';
 import Link from 'next/link';
-
-const ContentCard = () => {
+import { ICampaigns } from '../../api/datatypes/Campaigns';
+import placeholder from '../../public/img/placeholder.jpg';
+const ContentCard = (props: ICampaigns) => {
   return (
-    <Box m="3" maxW="350" w="100%" width={'370px'} height={'353px'}>
+    <Box m="3" mx="6" maxW="350" w="100%" width={'370px'} height={'353px'}>
       <VStack>
-        <Box>
-          <Image alt="banner img" width="370" height="191" src={cardimg} />
+        <Box width="370px" h="191px" borderRadius={'12px'} overflow={'hidden'}>
+          <Image
+            alt="banner img"
+            w={'full'}
+            h={'full'}
+            fallbackSrc={placeholder.src}
+            src={props.image}
+          />
         </Box>
         <Box>
           <Text
@@ -27,14 +34,14 @@ const ContentCard = () => {
             fontFamily={'Helvetica'}
             fontSize={'10px'}
             fontWeight={'400'}>
-            Video
+            {props.contentType}
           </Text>
           <Text
             color={'#2D3748'}
             fontFamily={'Helvetica'}
             fontSize={'18px'}
             fontWeight={700}>
-            Neo Blockchain & Future
+            {props.title}
           </Text>
           <Text
             mt="2"
@@ -100,6 +107,7 @@ export const CreateCard = () => {
         border={'1px'}
         maxW="300"
         w="100%"
+        minW="376px"
         height="353">
         <Box minW="100%" h="100%">
           <Flex

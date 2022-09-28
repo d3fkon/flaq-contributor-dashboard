@@ -1,44 +1,58 @@
 import { Box, Tab, TabList, Text, Tabs, TabPanels } from '@chakra-ui/react';
 import * as React from 'react';
+import { Control, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { BsCameraVideo, BsEmojiSmile } from 'react-icons/bs';
 import { HiPencil } from 'react-icons/hi';
+import { CreateContentFormData } from '../../../../api/datatypes/CreateCampaigns';
 import ArticleAndVideoTab from './ContentTypeTabs/ArticleAndVideoTab';
 import ArticleTab from './ContentTypeTabs/ArticleTab';
 import VideoTab from './ContentTypeTabs/VideoTab';
 import TabCard from './TabCard';
 import TabContentCard from './TabContentCard';
 
-export interface IAppProps {}
+export interface IAppProps {
+  register: UseFormRegister<CreateContentFormData>;
+  setValue: UseFormSetValue<CreateContentFormData>;
+  control: Control<CreateContentFormData>;
+}
 
-export default function App(props: IAppProps) {
+export default function App({ register, setValue, control }: IAppProps) {
   const ContentTabs = [
     {
       title: 'Video',
       icon: BsCameraVideo,
       des: 'Upload a video',
       bg: '#FFB185',
+      contentType: 'Video',
     },
     {
       title: 'Article',
       icon: HiPencil,
       des: 'write something',
       bg: '#55A3FF',
+      contentType: 'Articles',
     },
-
     {
       title: 'Video + Article ',
       icon: BsEmojiSmile,
       des: 'go all out record and write',
       bg: '#8133FF',
+      contentType: 'VideoArticles',
     },
   ];
   const [tabIndex, setTabIndex] = React.useState(0);
 
   const handleTabsChange = (index: any) => {
     setTabIndex(index);
+    setValue('contentType', ContentTabs[index].contentType);
   };
   return (
     <Box p="4">
+      <input
+        {...register('contentType')}
+        defaultValue="video"
+        style={{ display: 'none' }}
+      />
       <Text
         color={'#818BF5'}
         fontFamily={'Helvetica'}
@@ -63,13 +77,13 @@ export default function App(props: IAppProps) {
           </TabList>
           <TabPanels bg="white">
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <VideoTab />
+              <VideoTab register={register} control={control} />
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <ArticleTab />
+              <ArticleTab control={control} register={register} />
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <ArticleAndVideoTab />
+              <ArticleAndVideoTab register={register} />
             </TabContentCard>
           </TabPanels>
         </Tabs>
