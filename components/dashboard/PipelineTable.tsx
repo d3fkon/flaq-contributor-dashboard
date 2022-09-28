@@ -15,6 +15,8 @@ import {
   TabPanels,
   TabPanel,
   Tab,
+  Image,
+  Flex,
 } from '@chakra-ui/react';
 import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
@@ -42,6 +44,7 @@ function getPipelineDataUtil(inputdata: Array<ICampaignsData>) {
       dt.contentType = campaign.contentType;
       dt.status = campaign.status;
       dt.updatedAt = campaign.updatedAt;
+      dt.image = campaign.image;
       output.push(dt);
     });
   });
@@ -57,6 +60,7 @@ interface IPipelineTableData {
   contentType?: string;
   status?: string;
   updatedAt?: string;
+  image?: string;
 }
 
 const PipelineTable = ({ data }: IPipelineTable) => {
@@ -158,7 +162,15 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="left">
-                              {data.title}
+                              <Flex>
+                                <Image
+                                  src={data.image}
+                                  width={'20px'}
+                                  height={'20px'}
+                                  mx="1"
+                                />
+                                <Text as="span">{data.title}</Text>
+                              </Flex>
                             </Td>
                             <Td
                               fontSize="14px"
@@ -188,6 +200,21 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
+                            </Td>
+                            <Td
+                              fontSize="14px"
+                              fontFamily={'Helvetica'}
+                              fontWeight={'700'}
+                              color="#2D3748"
+                              lineHeight={'20px'}
+                              textAlign="center">
+                              <Text
+                                fontWeight="500"
+                                color="#2196F3"
+                                fontFamily="Poppins"
+                                fontSize="13px">
+                                View
+                              </Text>
                             </Td>
                           </Tr>
                         );
@@ -251,7 +278,15 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="left">
-                              {data.title}
+                              <Flex>
+                                <Image
+                                  src={data.image}
+                                  width={'20px'}
+                                  height={'20px'}
+                                  mx="1"
+                                />
+                                <Text as="span">{data.title}</Text>
+                              </Flex>
                             </Td>
                             <Td
                               fontSize="14px"
@@ -281,6 +316,21 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
+                            </Td>
+                            <Td
+                              fontSize="14px"
+                              fontFamily={'Helvetica'}
+                              fontWeight={'700'}
+                              color="#2D3748"
+                              lineHeight={'20px'}
+                              textAlign="center">
+                              <Text
+                                fontWeight="500"
+                                color="#2196F3"
+                                fontFamily="Poppins"
+                                fontSize="13px">
+                                View
+                              </Text>
                             </Td>
                           </Tr>
                         );

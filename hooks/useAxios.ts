@@ -1,38 +1,37 @@
-import { useEffect, useState } from 'react';
-import axios, { Method } from 'axios';
+import { useState, useEffect, useCallback } from 'react';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { flaqAxios } from '../api/config/axios';
 
-const useAxios = (
-  url: string,
-  method: Method,
-  body: any
-): [boolean, string | null, any] => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+const useAxios = (axiosParams: AxiosRequestConfig) => {
+  const [response, setResponse] = useState<AxiosResponse>();
+  const [error, setError] = useState<AxiosError>();
+  const [loading, setLoading] = useState(
+    axiosParams.method === 'GET' || axiosParams.method === 'get'
+  );
+
+  const fetchData = async (params: AxiosRequestConfig) => {
+    try {
+      const result = await flaqAxios().request(params);
+      setResponse(result);
+    } catch (err: any) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const sendData = useCallback(
+    (data: AxiosRequestConfig) => fetchData({ ...axiosParams, ...data }),
+    [fetchData]
+  );
 
   useEffect(() => {
-    setLoading(true);
-    const fetchData = async () => {
-      try {
-        const response = await flaqAxios()({
-          url: url,
-          method: method,
-          data: body,
-        });
-        const data = response?.data;
-        setData(data);
-      } catch (error: any) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (axiosParams.method === 'GET' || axiosParams.method === 'get') {
+      fetchData(axiosParams);
+    }
+  }, []);
 
-    fetchData().then((r) => r);
-  }, [url]);
-
-  return [loading, error, data];
+  return { response, error, loading, sendData };
 };
 
-export { useAxios };
+export default useAxios;
