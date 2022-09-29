@@ -7,7 +7,6 @@ import ContentCard, { CreateCard } from './ContentCard';
 function getContentDataUtil(inputdata: Array<ICampaigns>) {
   const output: ICampaigns[] = [];
   inputdata.map((da: ICampaigns) => {
-    console.log(da);
     output.push(da);
     // da?.campaigns.map((campaign) => {
     //   output.push(campaign);
@@ -40,7 +39,7 @@ const ContentContainer = ({ data }: IContentContainer) => {
           fontFamily={'Helvetica'}
           fontWeight={'400'}
           color="#A0AEC0">
-          Architects design houses
+          Approved Content
         </Text>
       </Box>
       <Box overflow={'scroll'} className="hidescroller">

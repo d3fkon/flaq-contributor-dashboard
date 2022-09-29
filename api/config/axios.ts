@@ -18,7 +18,6 @@ export const getBaseUrl = () => {
 
 const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
   const { accessToken, role } = useAuthenticationStore.getState().authData;
-  console.log(role, role === Roles.ADMIN);
   if (accessToken !== undefined) {
     if (role === Roles.ADMIN) {
       config.headers!['x-admin-access-token'] = `${accessToken}`;

@@ -34,6 +34,8 @@ import TwitterCard from '../components/Sidebar/TwitterCard';
 import useAuthenticationStore from '../stores/authenticationStore';
 import { AuthData } from '../api/authentication';
 import ApprovalModal from '../components/dashboard/ApprovalModal';
+import { BiLogOut } from 'react-icons/bi';
+
 // import RightSideBar from "../components/dashboard/RightSideBar";
 
 interface LinkItemProps {
@@ -113,6 +115,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
+      className="hidescroller"
+      overflow={'scroll'}
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Box>
@@ -152,9 +156,26 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           {link.name}
         </NavItem>
       ))}
+      <Box
+        my="2"
+        w="100%"
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}>
+        <Button
+          variant={'outline'}
+          mx="auto"
+          fontFamily={'Helvetica'}
+          color="#A0AEC0"
+          fontWeight={'700'}
+          fontSize={'12px'}
+          onClick={() => logout()}
+          leftIcon={<Icon as={BiLogOut} />}>
+          Logout
+        </Button>
+      </Box>
+
       <TwitterCard />
-      {/* TODO: Clear proper UI for this. */}
-      <Button onClick={logout}>Logout</Button>
     </Box>
   );
 };

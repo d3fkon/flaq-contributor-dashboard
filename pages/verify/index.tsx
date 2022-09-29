@@ -17,11 +17,8 @@ const VerifyPage = () => {
           isLoggedIn: true,
           authData: response.data,
         });
-        if (response.data.role == 'Admin') {
-          router.push('/admin');
-        } else {
-          router.push('/dashboard');
-        }
+
+        router.push('/dashboard');
       }
 
       if (response.status === Status.BadRequest) {

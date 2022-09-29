@@ -24,7 +24,7 @@ import React from 'react';
 import { approvalApi } from '../../api/ApprovalApi';
 import { ICampaigns } from '../../api/datatypes/Campaigns';
 import useAxios from '../../hooks/useAxios';
-
+import useCampaignStore from '../../stores/campaign';
 type Props = {
   data?: ICampaigns | undefined;
   isOpen: boolean;
@@ -63,16 +63,38 @@ const Level2TitleDropDown = ({
 };
 function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
   const toast = useToast();
+  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
+    useCampaignStore();
   const sendData = async (data: {
     campaignId: string | undefined;
     level2Id: string;
     status: string;
   }) => {
+    if (data.level2Id === '') {
+      toast({
+        position: 'top-right',
+        isClosable: true,
+        title: `Select Level2 Title`,
+        status: 'error',
+      });
+      return;
+    }
     const res = await approvalApi({ ...data });
     if (res.success) {
-      toast({ title: `Campaign ${data.status}`, status: 'success' });
+      toast({
+        position: 'top-right',
+        isClosable: true,
+        title: `Campaign ${data.status}`,
+        status: 'success',
+      });
+      fetchAdminCampaign();
     } else {
-      toast({ title: `Campaign ${data.status} Failed`, status: 'error' });
+      toast({
+        position: 'top-right',
+        isClosable: true,
+        title: `Campaign ${data.status} Failed`,
+        status: 'error',
+      });
     }
     onClose();
   };
@@ -283,6 +305,9 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                   status: 'Approved',
                 })
               }
+              _hover={{
+                backgroundColor: '#00C48C',
+              }}
               backgroundColor={'#66BB6A'}
               color={'#fff'}
               mr={3}>
@@ -293,6 +318,9 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
               borderRadius={'8px'}
               backgroundColor={'#EF5350'}
               color={'#fff'}
+              _hover={{
+                backgroundColor: '#E53935',
+              }}
               onClick={() =>
                 sendData({
                   campaignId: data?._id,
