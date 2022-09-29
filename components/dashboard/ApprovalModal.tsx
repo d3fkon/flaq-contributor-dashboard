@@ -40,7 +40,7 @@ const Level2TitleDropDown = ({
   setLevel2,
 }: Level2TitleDropDownProps) => {
   const { response, loading, error, sendData } = useAxios({
-    method: 'get',
+     method: 'get',
     url: `/admin/level2`,
   });
 
