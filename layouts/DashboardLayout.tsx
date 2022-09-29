@@ -155,7 +155,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <TwitterCard />
       {/* TODO: Clear proper UI for this. */}
       <Button onClick={logout}>Logout</Button>
-      <ApprovalModal />
     </Box>
   );
 };
