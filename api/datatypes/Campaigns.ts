@@ -4,13 +4,21 @@ export interface IArticles {
   iconUrl: string;
 }
 
+export interface IVideos {
+  url: string;
+  title: string;
+  desc?: string;
+  iconUrl?: string;
+}
 export interface ICampaigns {
   _id: string;
+  description1: string;
   title: string;
   contentType: string;
   status: string;
   image: string;
   articles: Array<IArticles>;
+  videos?: Array<IVideos>;
   quizzes: Array<string>;
   createdAt: string;
   updatedAt: string;
@@ -19,7 +27,7 @@ export interface ICampaigns {
 
 export default interface ICampaignsData {
   _id: string;
-  username: string;
+  username?: string;
   email: string;
   discordId: string;
   campaigns: Array<ICampaigns>;

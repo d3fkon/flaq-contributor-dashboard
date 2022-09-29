@@ -17,13 +17,15 @@ import {
   Tab,
   Image,
   Flex,
+  useDisclosure,
 } from '@chakra-ui/react';
-import React from 'react';
-import { BsCheckCircleFill } from 'react-icons/bs';
-import ICampaignsData from '../../api/datatypes/Campaigns';
+import React, { useState } from 'react';
+import ICampaignsData, { ICampaigns } from '../../api/datatypes/Campaigns';
+import useAuthenticationStore from '../../stores/authenticationStore';
+import ApprovalModal from './ApprovalModal';
 
 // utils to get the usefull data from the data fetched from the api
-function getPipelineDataUtil(inputdata: Array<ICampaignsData>) {
+function getPipelineDataUtil(inputdata: Array<ICampaigns>) {
   const output: Array<IPipelineTableData> = [];
   inputdata.map((da) => {
     var st: ICampaignsData = {
@@ -36,25 +38,16 @@ function getPipelineDataUtil(inputdata: Array<ICampaignsData>) {
       updatedAt: '',
       __v: 0,
     };
-    st.username = da.username;
-
-    da.campaigns.map((campaign) => {
-      const dt: IPipelineTableData = { ...st };
-      dt.title = campaign.title;
-      dt.contentType = campaign.contentType;
-      dt.status = campaign.status;
-      dt.updatedAt = campaign.updatedAt;
-      dt.image = campaign.image;
-      output.push(dt);
-    });
+    output.push(da);
   });
   return output;
 }
 interface IPipelineTable {
-  data: Array<ICampaignsData> | undefined;
+  data: Array<ICampaigns> | undefined;
 }
 
 interface IPipelineTableData {
+  _id?: string;
   username?: string;
   title?: string;
   contentType?: string;
@@ -64,8 +57,29 @@ interface IPipelineTableData {
 }
 
 const PipelineTable = ({ data }: IPipelineTable) => {
+  const [approvalModalData, setApprovalModalData] = useState<
+    ICampaigns | undefined
+  >();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const openModal = (_id: string | undefined) => {
+    // setApprovalModalData(data[_id]);
+    data &&
+      setApprovalModalData(
+        data[data.findIndex((x: ICampaigns) => x._id === _id)]
+      );
+    onOpen();
+    console.log(approvalModalData);
+  };
+  console.log(data && getPipelineDataUtil(data));
   return (
     <Container my="2" maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}>
+      <ApprovalModal
+        data={approvalModalData}
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+      />
       <Box minW="100%" minH="100%" mb="6">
         <Text
           fontSize="18px"
@@ -104,6 +118,20 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               borderColor: '#2196F3',
             }}>
             PENDING
+          </Tab>
+          <Tab
+            px="14"
+            fontFamily={'Poppins'}
+            fontWeight={'500'}
+            fontSize="14px"
+            lineHeight={'24px'}
+            letterSpacing={'0.4px'}
+            _selected={{
+              borderBottom: '2px',
+              color: '#2196F3',
+              borderColor: '#2196F3',
+            }}>
+            Rejected
           </Tab>
         </TabList>
         <TabPanels>
@@ -192,21 +220,6 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center">
-                              <Text
-                                fontWeight="500"
-                                color="#2196F3"
-                                fontFamily="Poppins"
-                                fontSize="13px">
-                                View
-                              </Text>
                             </Td>
                           </Tr>
                         );
@@ -301,6 +314,90 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                                 .toISOString()
                                 .slice(0, 10)}
                             </Td>
+                            {useAuthenticationStore.getState().authData.role ===
+                              'Admin' && (
+                              <Td
+                                fontSize="14px"
+                                fontFamily={'Helvetica'}
+                                fontWeight={'700'}
+                                color="#2D3748"
+                                lineHeight={'20px'}
+                                textAlign="center">
+                                <Text
+                                  cursor={'pointer'}
+                                  fontWeight="500"
+                                  color="#2196F3"
+                                  fontFamily="Poppins"
+                                  fontSize="13px"
+                                  onClick={() => openModal(data?._id)}>
+                                  View
+                                </Text>
+                              </Td>
+                            )}
+                          </Tr>
+                        );
+                      })}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </TabPanel>
+          <TabPanel>
+            <TableContainer>
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th
+                      fontSize="10px"
+                      fontFamily={'Helvetica'}
+                      fontWeight={'400'}
+                      color="#A0AEC0"
+                      textAlign={'left'}>
+                      Content
+                    </Th>
+                    <Th
+                      fontSize="10px"
+                      fontFamily={'Helvetica'}
+                      fontWeight={'400'}
+                      color="#A0AEC0"
+                      textAlign={'center'}>
+                      Content Type
+                    </Th>
+                    <Th
+                      fontSize="10px"
+                      fontFamily={'Helvetica'}
+                      fontWeight={'400'}
+                      color="#A0AEC0"
+                      textAlign={'center'}>
+                      Status
+                    </Th>
+                    <Th
+                      fontSize="10px"
+                      fontFamily={'Helvetica'}
+                      fontWeight={'400'}
+                      color="#A0AEC0"
+                      textAlign={'center'}>
+                      Date
+                    </Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {data &&
+                    getPipelineDataUtil(data)
+                      .filter((data) => {
+                        return data.status === 'Rejected';
+                      })
+                      .map((data, idx) => {
+                        return (
+                          <Tr key={idx}>
+                            <Td
+                              fontSize="14px"
+                              fontFamily={'Helvetica'}
+                              fontWeight={'700'}
+                              color="#2D3748"
+                              lineHeight={'20px'}
+                              textAlign="left">
+                              {data.title}
+                            </Td>
                             <Td
                               fontSize="14px"
                               fontFamily={'Helvetica'}
@@ -308,13 +405,27 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               color="#2D3748"
                               lineHeight={'20px'}
                               textAlign="center">
-                              <Text
-                                fontWeight="500"
-                                color="#2196F3"
-                                fontFamily="Poppins"
-                                fontSize="13px">
-                                View
-                              </Text>
+                              {data.contentType}
+                            </Td>
+                            <Td
+                              fontSize="14px"
+                              fontFamily={'Helvetica'}
+                              fontWeight={'700'}
+                              color="#2D3748"
+                              lineHeight={'20px'}
+                              textAlign="center">
+                              {data.status}
+                            </Td>
+                            <Td
+                              fontSize="14px"
+                              fontFamily={'Helvetica'}
+                              fontWeight={'700'}
+                              color="#2D3748"
+                              lineHeight={'20px'}
+                              textAlign="center">
+                              {new Date(`${data.updatedAt}`)
+                                .toISOString()
+                                .slice(0, 10)}
                             </Td>
                           </Tr>
                         );

@@ -28,11 +28,12 @@ const ContentCard = (props: ICampaigns) => {
             src={props.image}
           />
         </Box>
-        <Box>
+        <Box w="100%" p="1" justifyContent={'left'}>
           <Text
             color={'#A0AEC0'}
             fontFamily={'Helvetica'}
             fontSize={'10px'}
+            textAlign={'left'}
             fontWeight={'400'}>
             {props.contentType}
           </Text>
@@ -40,6 +41,7 @@ const ContentCard = (props: ICampaigns) => {
             color={'#2D3748'}
             fontFamily={'Helvetica'}
             fontSize={'18px'}
+            textAlign={'left'}
             fontWeight={700}>
             {props.title}
           </Text>
@@ -49,9 +51,9 @@ const ContentCard = (props: ICampaigns) => {
             fontFamily={'Helvetica'}
             fontSize={'12px'}
             fontWeight={'400'}
+            textAlign={'left'}
             lineHeight={'18px'}>
-            A short video on why Neo Blockchain is potentially the biggest
-            player in the industy now
+            {props.description1}
           </Text>
         </Box>
         <Box w="100%" pt="5">

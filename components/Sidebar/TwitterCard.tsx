@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Icon, Link, Text } from '@chakra-ui/react';
 import React from 'react';
 import { BsTwitter } from 'react-icons/bs';
 import twitterbg from '../../public/img/twittercardbg.png';
@@ -41,9 +41,11 @@ const TwitterCard = () => {
               Stay updated
             </Text>
           </Box>
-          <Button borderRadius={'12px'} my="2" bg="white">
-            Twitter
-          </Button>
+          <Link w="fit-content" href="https://twitter.com/flaq_club">
+            <Button borderRadius={'12px'} my="2" bg="white">
+              Twitter
+            </Button>
+          </Link>
         </Flex>
       </Box>
     </Box>
