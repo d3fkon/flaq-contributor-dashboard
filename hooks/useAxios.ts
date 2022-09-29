@@ -10,11 +10,14 @@ const useAxios = (axiosParams: AxiosRequestConfig) => {
   );
 
   const fetchData = async (params: AxiosRequestConfig) => {
+    setLoading(true);
     try {
       const result = await flaqAxios().request(params);
       setResponse(result);
+      setLoading(false);
     } catch (err: any) {
       setError(err);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
