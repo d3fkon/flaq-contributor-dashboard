@@ -6,6 +6,9 @@ const Inputs = {
         border: '1px solid #E2E8F0',
         borderRadius: '15px',
         boxShadow: 'none',
+        _disabled: {
+          opacity: 1,
+        },
         _placeholder: {
           color: '#A3B2C8',
           fontFamily: 'Space Grotesk',

@@ -33,6 +33,7 @@ import { ReactText } from 'react';
 import TwitterCard from '../components/Sidebar/TwitterCard';
 import useAuthenticationStore from '../stores/authenticationStore';
 import { AuthData } from '../api/authentication';
+import ApprovalModal from '../components/dashboard/ApprovalModal';
 // import RightSideBar from "../components/dashboard/RightSideBar";
 
 interface LinkItemProps {
@@ -152,9 +153,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </NavItem>
       ))}
       <TwitterCard />
-
       {/* TODO: Clear proper UI for this. */}
       <Button onClick={logout}>Logout</Button>
+      <ApprovalModal />
     </Box>
   );
 };

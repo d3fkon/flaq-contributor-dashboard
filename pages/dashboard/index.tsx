@@ -14,8 +14,8 @@ const Dashboard = () => {
 
   return (
     <Container mt="18" border="2" mx="0" maxW="100%">
-      <ContentContainer data={response?.data} />
-      <PipelineTable data={response?.data} />
+      <ContentContainer data={response?.data[0].campaigns} />
+      <PipelineTable data={response?.data[0].campaigns} />
     </Container>
   );
 };

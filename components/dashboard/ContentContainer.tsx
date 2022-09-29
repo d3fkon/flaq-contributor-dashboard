@@ -1,20 +1,23 @@
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import ICampaignsData, { ICampaigns } from '../../api/datatypes/Campaigns';
+import useAuthenticationStore from '../../stores/authenticationStore';
 import ContentCard, { CreateCard } from './ContentCard';
 
-function getContentDataUtil(inputdata: Array<ICampaignsData>) {
+function getContentDataUtil(inputdata: Array<ICampaigns>) {
   const output: ICampaigns[] = [];
-  inputdata.map((da: ICampaignsData) => {
-    da?.campaigns.map((campaign) => {
-      output.push(campaign);
-    });
+  inputdata.map((da: ICampaigns) => {
+    console.log(da);
+    output.push(da);
+    // da?.campaigns.map((campaign) => {
+    //   output.push(campaign);
+    // });
   });
   return output;
 }
 
 interface IContentContainer {
-  data: Array<ICampaignsData> | undefined;
+  data: Array<ICampaigns> | undefined;
 }
 
 const ContentContainer = ({ data }: IContentContainer) => {
@@ -46,11 +49,18 @@ const ContentContainer = ({ data }: IContentContainer) => {
           flexWrap={'nowrap'}
           overflow={'auto'}
           w="fit-content">
-          <CreateCard />
+          {!(useAuthenticationStore.getState().authData.role === 'Admin') && (
+            <CreateCard />
+          )}
+
           {data &&
-            getContentDataUtil(data).map((data: ICampaigns, idx: number) => {
-              return <ContentCard {...data} key={idx} />;
-            })}
+            getContentDataUtil(data)
+              .filter((data) => {
+                return data.status === 'Approved';
+              })
+              .map((data: ICampaigns, idx: number) => {
+                return <ContentCard {...data} key={idx} />;
+              })}
         </Flex>
       </Box>
     </Container>

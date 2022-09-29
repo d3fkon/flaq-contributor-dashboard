@@ -17,7 +17,11 @@ const VerifyPage = () => {
           isLoggedIn: true,
           authData: response.data,
         });
-        router.push('/dashboard');
+        if (response.data.role == 'Admin') {
+          router.push('/admin');
+        } else {
+          router.push('/dashboard');
+        }
       }
 
       if (response.status === Status.BadRequest) {
@@ -35,9 +39,11 @@ const VerifyPage = () => {
   }, [verficationCode]);
 
   // TODO: UI for the page should be udpated.
-  return <>
-  <VerifyLoaderComponent/>
-  </>;
+  return (
+    <>
+      <VerifyLoaderComponent />
+    </>
+  );
 };
 
 export default VerifyPage;

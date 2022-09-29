@@ -4,6 +4,7 @@ import { AxiosError, AxiosRequestConfig } from 'axios';
 import useAuthenticationStore from '../../stores/authenticationStore';
 import getConfig from 'next/config';
 import { Roles } from '../authentication';
+import { Console } from 'console';
 // For using the ENV variables in the client side.
 const { publicRuntimeConfig } = getConfig();
 
@@ -17,7 +18,7 @@ export const getBaseUrl = () => {
 
 const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
   const { accessToken, role } = useAuthenticationStore.getState().authData;
-
+  console.log(role, role === Roles.ADMIN);
   if (accessToken !== undefined) {
     if (role === Roles.ADMIN) {
       config.headers!['x-admin-access-token'] = `${accessToken}`;
