@@ -7,6 +7,7 @@ import {
   Input,
   Text,
   Textarea,
+  useToast,
 } from '@chakra-ui/react';
 import { IoMdClose } from 'react-icons/io';
 import { useRouter } from 'next/router';
@@ -16,14 +17,15 @@ import UploadImageComp from './ContentType/UploadImageComp';
 import { CreateContentFormData } from '../../../api/datatypes/CreateCampaigns';
 import useAxios from '../../../hooks/useAxios';
 import { uploadFile } from '../../../api/uploadImage';
+import { createCampaign } from '../../../api/campaign';
 
 const Create = () => {
   const router = useRouter();
-  const [imageUpload, setImageUpload] = useState(undefined);
-  const { response, loading, error, sendData } = useAxios({
-    method: 'POST',
-    url: `/creators/campaign/create`,
-  });
+  const toast = useToast();
+  // const { response, loading, error, sendData } = useAxios({
+  //   method: 'POST',
+  //   url: `/creators/campaign/create`,
+  // });
 
   const {
     register,
@@ -36,7 +38,16 @@ const Create = () => {
 
   const onSubmit = async (Formdata: any) => {
     console.log(Formdata);
-    sendData({ data: Formdata });
+    const respon = await createCampaign(Formdata);
+    console.log(respon);
+    if (respon.success) {
+      toast({ title: `Campaign Created`, status: 'success' });
+    } else {
+      toast({
+        title: `Campaign Creation Failed: Check Inputs`,
+        status: 'error',
+      });
+    }
   };
 
   return (

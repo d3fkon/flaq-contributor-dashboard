@@ -18,8 +18,10 @@ import {
   Flex,
   Textarea,
   Select,
+  useToast,
 } from '@chakra-ui/react';
 import React from 'react';
+import { approvalApi } from '../../api/ApprovalApi';
 import { ICampaigns } from '../../api/datatypes/Campaigns';
 import useAxios from '../../hooks/useAxios';
 
@@ -60,10 +62,20 @@ const Level2TitleDropDown = ({
   );
 };
 function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
-  const { response, loading, error, sendData } = useAxios({
-    method: 'POST',
-    url: `/admin/level2`,
-  });
+  const toast = useToast();
+  const sendData = async (data: {
+    campaignId: string | undefined;
+    level2Id: string;
+    status: string;
+  }) => {
+    const res = await approvalApi({ ...data });
+    if (res.success) {
+      toast({ title: `Campaign ${data.status}`, status: 'success' });
+    } else {
+      toast({ title: `Campaign ${data.status} Failed`, status: 'error' });
+    }
+    onClose();
+  };
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const [level2, setLevel2] = React.useState('');
@@ -266,11 +278,9 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
               borderRadius={'8px'}
               onClick={() =>
                 sendData({
-                  data: {
-                    campaignId: data?._id,
-                    level2Id: level2,
-                    status: 'Approved',
-                  },
+                  campaignId: data?._id,
+                  level2Id: level2,
+                  status: 'Approved',
                 })
               }
               backgroundColor={'#66BB6A'}
@@ -285,11 +295,9 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
               color={'#fff'}
               onClick={() =>
                 sendData({
-                  data: {
-                    campaignId: data?._id,
-                    level2Id: level2,
-                    status: 'Rejected',
-                  },
+                  campaignId: data?._id,
+                  level2Id: level2,
+                  status: 'Rejected',
                 })
               }>
               reject
