@@ -102,6 +102,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                 leftIcon={<BsPlusLg />}
                 color="white"
                 backgroundColor="#818BF5"
+                variant="solid"
+                _hover={{ backgroundColor: 'rgba(129, 139, 245, 0.9)' }}
               >
                 Create
               </Button>
