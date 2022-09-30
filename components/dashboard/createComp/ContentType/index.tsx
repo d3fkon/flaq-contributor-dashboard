@@ -33,7 +33,7 @@ export default function App({ register, setValue, control }: IAppProps) {
       contentType: 'Articles',
     },
     {
-      title: 'Video + Article ',
+      title: 'Video + Article',
       icon: BsEmojiSmile,
       des: 'go all out record and write',
       bg: '#8133FF',
@@ -77,17 +77,23 @@ export default function App({ register, setValue, control }: IAppProps) {
           </TabList>
           <TabPanels bg="white">
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <VideoTab register={register} control={control} />
+              {ContentTabs[tabIndex].title == 'Video' && (
+                <VideoTab register={register} control={control} />
+              )}
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <ArticleTab
-                control={control}
-                register={register}
-                setValue={setValue}
-              />
+              {ContentTabs[tabIndex].title == 'Article' && (
+                <ArticleTab
+                  register={register}
+                  setValue={setValue}
+                  control={control}
+                />
+              )}
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
-              <ArticleAndVideoTab register={register} setValue={setValue} />
+              {ContentTabs[tabIndex].title === 'Video + Article' && (
+                <ArticleAndVideoTab register={register} setValue={setValue} />
+              )}
             </TabContentCard>
           </TabPanels>
         </Tabs>

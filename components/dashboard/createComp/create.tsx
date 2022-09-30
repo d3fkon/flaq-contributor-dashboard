@@ -41,9 +41,16 @@ const Create = () => {
     const respon = await createCampaign(Formdata);
     console.log(respon);
     if (respon.success) {
-      toast({ title: `Campaign Created`, status: 'success' });
+      toast({
+        position: 'top-right',
+        isClosable: true,
+        title: `Campaign Created`,
+        status: 'success',
+      });
     } else {
       toast({
+        position: 'top-right',
+        isClosable: true,
         title: `Campaign Creation Failed: Check Inputs`,
         status: 'error',
       });

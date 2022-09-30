@@ -1,23 +1,13 @@
-import {
-  Box,
-  VStack,
-  Text,
-  Button,
-  Flex,
-  AvatarGroup,
-  Avatar,
-  Image,
-  Icon,
-} from '@chakra-ui/react';
+import { Box, VStack, Text, Button, Flex, Image, Icon } from '@chakra-ui/react';
 import React from 'react';
-import cardimg from '../../public/img/cardimg.png';
 import { BsPlusLg } from 'react-icons/bs';
 import Link from 'next/link';
 import { ICampaigns } from '../../api/datatypes/Campaigns';
 import placeholder from '../../public/img/placeholder.jpg';
+
 const ContentCard = (props: ICampaigns) => {
   return (
-    <Box m="3" mx="6" maxW="350" w="100%" width={'370px'} height={'353px'}>
+    <Box m="3" mx="6" maxW="350" w="100%" width={'370px'} height={'280px'}>
       <VStack>
         <Box width="370px" h="191px" borderRadius={'12px'} overflow={'hidden'}>
           <Image
@@ -56,7 +46,7 @@ const ContentCard = (props: ICampaigns) => {
             {props.description1}
           </Text>
         </Box>
-        <Box w="100%" pt="5">
+        {/* <Box w="100%" pt="5">
           <Flex direction="row" justifyContent={'space-between'}>
             <Box>
               <Button
@@ -73,7 +63,7 @@ const ContentCard = (props: ICampaigns) => {
             </Box>
             <Box></Box>
           </Flex>
-        </Box>
+        </Box> */}
       </VStack>
     </Box>
   );

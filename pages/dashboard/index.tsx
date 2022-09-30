@@ -4,19 +4,46 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import ContentContainer from '../../components/dashboard/ContentContainer';
 import PipelineTable from '../../components/dashboard/PipelineTable';
 
-import useAxios from '../../hooks/useAxios';
+import useAuthenticationStore from '../../stores/authenticationStore';
+import useCampaignStore from '../../stores/campaign';
+const CreatorDashboard = () => {
+  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
+    useCampaignStore();
+  useEffect(() => {
+    fetchCreatorCampaign();
+  }, []);
+  return (
+    <Container mt="18" border="2" mx="0" maxW="100%">
+      <ContentContainer data={campaign} />
+      <PipelineTable data={campaign} />
+    </Container>
+  );
+};
 
-const Dashboard = () => {
-  const { response, loading, error, sendData } = useAxios({
-    method: 'get',
-    url: `creators/campaigns`,
-  });
+const AdminDashboard = () => {
+  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
+    useCampaignStore();
+  useEffect(() => {
+    fetchAdminCampaign();
+  }, []);
 
   return (
     <Container mt="18" border="2" mx="0" maxW="100%">
-      <ContentContainer data={response?.data[0].campaigns} />
-      <PipelineTable data={response?.data[0].campaigns} />
+      {/* <ContentContainer data={campaign} /> */}
+      <PipelineTable data={campaign} />
     </Container>
+  );
+};
+const Dashboard = () => {
+  return (
+    <>
+      {useAuthenticationStore.getState().authData.role === 'Admin' && (
+        <AdminDashboard />
+      )}
+      {useAuthenticationStore.getState().authData.role === 'Creator' && (
+        <CreatorDashboard />
+      )}
+    </>
   );
 };
 

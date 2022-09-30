@@ -20,7 +20,7 @@ export type AuthenticationFailure = {
 
 export enum Roles {
   ADMIN = 'Admin',
-  CREATOR = 'creator',
+  CREATOR = 'Creator',
 }
 export interface AuthData {
   role: Roles | undefined;

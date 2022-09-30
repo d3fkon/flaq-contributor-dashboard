@@ -69,9 +69,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
         data[data.findIndex((x: ICampaigns) => x._id === _id)]
       );
     onOpen();
-    console.log(approvalModalData);
   };
-  console.log(data && getPipelineDataUtil(data));
   return (
     <Container my="2" maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}>
       <ApprovalModal
@@ -131,7 +129,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               color: '#2196F3',
               borderColor: '#2196F3',
             }}>
-            Rejected
+            REJECTED
           </Tab>
         </TabList>
         <TabPanels>
