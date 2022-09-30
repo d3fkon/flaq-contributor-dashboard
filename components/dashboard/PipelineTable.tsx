@@ -18,8 +18,12 @@ import {
   Image,
   Flex,
   useDisclosure,
+  Spacer,
+  Button,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import React, { useState } from 'react';
+import { BsPlusLg } from 'react-icons/bs';
 import ICampaignsData, { ICampaigns } from '../../api/datatypes/Campaigns';
 import useAuthenticationStore from '../../stores/authenticationStore';
 import ApprovalModal from './ApprovalModal';
@@ -82,16 +86,30 @@ const PipelineTable = ({ data }: IPipelineTable) => {
         onClose={onClose}
       />
       <Box minW="100%" minH="100%" mb="3" mt="6">
-        <Text
-          fontSize="18px"
-          fontFamily={'Helvetica'}
-          fontWeight={'700'}
-          color="#818BF5"
-        >
-          Your content pipeline
-        </Text>
+        <Flex minWidth="max-content" alignItems="center" gap="2">
+          <Text
+            fontSize="18px"
+            fontFamily={'Helvetica'}
+            fontWeight={'700'}
+            color="#818BF5"
+          >
+            Your content pipeline
+          </Text>
+          <Spacer />
+          {!(useAuthenticationStore.getState().authData.role === 'Admin') && (
+            <Link href={'/dashboard/create'}>
+              <Button
+                leftIcon={<BsPlusLg />}
+                color="white"
+                backgroundColor="#818BF5"
+              >
+                Create
+              </Button>
+            </Link>
+          )}
+        </Flex>
       </Box>
-      <Tabs bg="white" p="5" borderRadius={'8'} variant="unstyled">
+      <Tabs bg="white" p="0" borderRadius={'8'} variant="unstyled">
         <TabList>
           <Tab
             px="14"

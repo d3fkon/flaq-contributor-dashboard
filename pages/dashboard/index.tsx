@@ -1,4 +1,4 @@
-import { Container } from '@chakra-ui/react';
+import { Button, Container } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import ContentContainer from '../../components/dashboard/ContentContainer';
@@ -7,22 +7,37 @@ import PipelineTable from '../../components/dashboard/PipelineTable';
 import useAuthenticationStore from '../../stores/authenticationStore';
 import useCampaignStore from '../../stores/campaign';
 const CreatorDashboard = () => {
-  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
-    useCampaignStore();
+  const {
+    campaign,
+    fetchCreatorCampaign,
+    fetchAdminCampaign,
+  } = useCampaignStore();
   useEffect(() => {
     fetchCreatorCampaign();
   }, []);
   return (
-    <Container mt="18" border="2" mx="0" maxW="100%">
-      <ContentContainer data={campaign} />
+    <Container
+      mt="18"
+      border="2"
+      mx="0"
+      maxW="100%"
+      bg="white"
+      py="1"
+      borderRadius={'8'}
+    >
+      {/* <ContentContainer data={campaign} /> */}
+
       <PipelineTable data={campaign} />
     </Container>
   );
 };
 
 const AdminDashboard = () => {
-  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
-    useCampaignStore();
+  const {
+    campaign,
+    fetchCreatorCampaign,
+    fetchAdminCampaign,
+  } = useCampaignStore();
   useEffect(() => {
     fetchAdminCampaign();
   }, []);
