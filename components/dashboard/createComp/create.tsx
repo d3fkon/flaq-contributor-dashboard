@@ -66,7 +66,8 @@ const Create = () => {
               fontFamily={'Helvetica'}
               fontSize={'26px'}
               color={'#2D3748'}
-              fontWeight={700}>
+              fontWeight={700}
+            >
               Create Content
             </Text>
             <IconButton
@@ -84,7 +85,8 @@ const Create = () => {
                 fontFamily={'Helvetica'}
                 fontSize={'18px'}
                 color={'#818BF5'}
-                fontWeight={700}>
+                fontWeight={700}
+              >
                 Basic Information
               </Text>
             </Box>
@@ -96,6 +98,12 @@ const Create = () => {
                     Title
                   </Text>
                   <Input {...register('title')} variant={'primary'} />
+                </Box>
+                <Box>
+                  <Text variant={'inputlabel'} w="350px">
+                    Wallet Adress for tips
+                  </Text>
+                  <Input {...register('walletAddress')} variant={'primary'} />
                 </Box>
                 <Box>
                   <Text variant={'inputlabel'} w="350px">

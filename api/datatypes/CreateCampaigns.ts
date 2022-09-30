@@ -11,6 +11,7 @@ export interface ArticlesType {
   iconUrl: string;
 }
 export interface CreateContentFormData {
+  walletAddress: string;
   description1: string;
   title: string;
   image: string;

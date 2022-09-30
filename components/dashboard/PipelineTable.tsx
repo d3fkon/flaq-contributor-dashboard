@@ -78,13 +78,14 @@ const PipelineTable = ({ data }: IPipelineTable) => {
         onOpen={onOpen}
         onClose={onClose}
       />
-      <Box minW="100%" minH="100%" mb="6">
+      <Box minW="100%" minH="100%" mb="3" mt="6">
         <Text
           fontSize="18px"
           fontFamily={'Helvetica'}
           fontWeight={'700'}
-          color="#818BF5">
-          Pipeline
+          color="#818BF5"
+        >
+          Your content pipeline
         </Text>
       </Box>
       <Tabs bg="white" p="5" borderRadius={'8'} variant="unstyled">
@@ -100,7 +101,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               color: '#2196F3',
               borderBottom: '2px',
               borderColor: '#2196F3',
-            }}>
+            }}
+          >
             APPROVED
           </Tab>
           <Tab
@@ -114,8 +116,9 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               borderBottom: '2px',
               color: '#2196F3',
               borderColor: '#2196F3',
-            }}>
-            PENDING
+            }}
+          >
+            PIPELINE
           </Tab>
           <Tab
             px="14"
@@ -128,7 +131,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               borderBottom: '2px',
               color: '#2196F3',
               borderColor: '#2196F3',
-            }}>
+            }}
+          >
             REJECTED
           </Tab>
         </TabList>
@@ -143,7 +147,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'left'}>
+                      textAlign={'left'}
+                    >
                       Content
                     </Th>
                     <Th
@@ -151,7 +156,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Content Type
                     </Th>
                     <Th
@@ -159,7 +165,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Status
                     </Th>
                     <Th
@@ -167,7 +174,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Date
                     </Th>
                   </Tr>
@@ -187,7 +195,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="left">
+                              textAlign="left"
+                            >
                               {data.title}
                             </Td>
                             <Td
@@ -196,7 +205,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {data.contentType}
                             </Td>
                             <Td
@@ -205,7 +215,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {data.status}
                             </Td>
                             <Td
@@ -214,7 +225,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
@@ -236,7 +248,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'left'}>
+                      textAlign={'left'}
+                    >
                       Content
                     </Th>
                     <Th
@@ -244,7 +257,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Content Type
                     </Th>
                     <Th
@@ -252,7 +266,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Status
                     </Th>
                     <Th
@@ -260,7 +275,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Date
                     </Th>
                   </Tr>
@@ -280,7 +296,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="left">
+                              textAlign="left"
+                            >
                               {data.title}
                             </Td>
                             <Td
@@ -289,7 +306,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {data.contentType}
                             </Td>
                             <Td
@@ -298,7 +316,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {data.status}
                             </Td>
                             <Td
@@ -307,7 +326,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
@@ -320,14 +340,16 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                                 fontWeight={'700'}
                                 color="#2D3748"
                                 lineHeight={'20px'}
-                                textAlign="center">
+                                textAlign="center"
+                              >
                                 <Text
                                   cursor={'pointer'}
                                   fontWeight="500"
                                   color="#2196F3"
                                   fontFamily="Poppins"
                                   fontSize="13px"
-                                  onClick={() => openModal(data?._id)}>
+                                  onClick={() => openModal(data?._id)}
+                                >
                                   View
                                 </Text>
                               </Td>
@@ -349,7 +371,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'left'}>
+                      textAlign={'left'}
+                    >
                       Content
                     </Th>
                     <Th
@@ -357,7 +380,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Content Type
                     </Th>
                     <Th
@@ -365,7 +389,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Status
                     </Th>
                     <Th
@@ -373,7 +398,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}>
+                      textAlign={'center'}
+                    >
                       Date
                     </Th>
                   </Tr>
@@ -393,7 +419,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="left">
+                              textAlign="left"
+                            >
                               {data.title}
                             </Td>
                             <Td
@@ -402,7 +429,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {data.contentType}
                             </Td>
                             <Td
@@ -411,7 +439,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {data.status}
                             </Td>
                             <Td
@@ -420,7 +449,8 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center">
+                              textAlign="center"
+                            >
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
