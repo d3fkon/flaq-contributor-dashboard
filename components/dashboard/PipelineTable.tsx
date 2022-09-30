@@ -60,9 +60,11 @@ const PipelineTable = ({ data }: IPipelineTable) => {
   const [approvalModalData, setApprovalModalData] = useState<
     ICampaigns | undefined
   >();
+  const [isApprovedView, setIsApprovedView] = useState<boolean>(false);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const openModal = (_id: string | undefined) => {
+  const openModal = (_id: string | undefined, isApprovedView?: boolean) => {
     // setApprovalModalData(data[_id]);
     data &&
       setApprovalModalData(
@@ -74,6 +76,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
     <Container my="2" maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}>
       <ApprovalModal
         data={approvalModalData}
+        isApprovedView={isApprovedView}
         isOpen={isOpen}
         onOpen={onOpen}
         onClose={onClose}
@@ -231,6 +234,31 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                                 .toISOString()
                                 .slice(0, 10)}
                             </Td>
+                            {useAuthenticationStore.getState().authData.role ===
+                              'Admin' && (
+                              <Td
+                                fontSize="14px"
+                                fontFamily={'Helvetica'}
+                                fontWeight={'700'}
+                                color="#2D3748"
+                                lineHeight={'20px'}
+                                textAlign="center"
+                              >
+                                <Text
+                                  cursor={'pointer'}
+                                  fontWeight="500"
+                                  color="#2196F3"
+                                  fontFamily="Poppins"
+                                  fontSize="13px"
+                                  onClick={() => {
+                                    setIsApprovedView(true);
+                                    openModal(data?._id);
+                                  }}
+                                >
+                                  View
+                                </Text>
+                              </Td>
+                            )}
                           </Tr>
                         );
                       })}
@@ -348,7 +376,10 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                                   color="#2196F3"
                                   fontFamily="Poppins"
                                   fontSize="13px"
-                                  onClick={() => openModal(data?._id)}
+                                  onClick={() => {
+                                    setIsApprovedView(false);
+                                    openModal(data?._id);
+                                  }}
                                 >
                                   View
                                 </Text>

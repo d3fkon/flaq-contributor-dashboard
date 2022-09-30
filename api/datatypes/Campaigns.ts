@@ -22,6 +22,7 @@ export interface ICampaigns {
   quizzes: Array<string>;
   createdAt: string;
   updatedAt: string;
+  isApprovedView?: boolean;
   __v: number;
 }
 

@@ -47,6 +47,7 @@ const Create = () => {
         title: `Campaign Created`,
         status: 'success',
       });
+      router.push('/dashboard');
     } else {
       toast({
         position: 'top-right',
@@ -101,7 +102,7 @@ const Create = () => {
                 </Box>
                 <Box>
                   <Text variant={'inputlabel'} w="350px">
-                    Wallet Adress for tips
+                    Wallet Address for tips
                   </Text>
                   <Input {...register('walletAddress')} variant={'primary'} />
                 </Box>

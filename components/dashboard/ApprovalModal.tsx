@@ -30,6 +30,7 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   onOpen: () => void;
+  isApprovedView: boolean;
 };
 type Level2TitleDropDownProps = {
   level2: string;
@@ -40,7 +41,7 @@ const Level2TitleDropDown = ({
   setLevel2,
 }: Level2TitleDropDownProps) => {
   const { response, loading, error, sendData } = useAxios({
-     method: 'get',
+    method: 'get',
     url: `/admin/level2`,
   });
 
@@ -49,7 +50,8 @@ const Level2TitleDropDown = ({
       value={level2}
       onChange={(e) => setLevel2(e.target.value)}
       my="5"
-      placeholder="Select Level2 Title">
+      placeholder="Select Level2 Title"
+    >
       {response?.data &&
         response.data.map((dt: any) => {
           return (
@@ -61,10 +63,19 @@ const Level2TitleDropDown = ({
     </Select>
   );
 };
-function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
+function ApprovalModal({
+  data,
+  isOpen,
+  onOpen,
+  onClose,
+  isApprovedView,
+}: Props) {
   const toast = useToast();
-  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
-    useCampaignStore();
+  const {
+    campaign,
+    fetchCreatorCampaign,
+    fetchAdminCampaign,
+  } = useCampaignStore();
   const sendData = async (data: {
     campaignId: string | undefined;
     level2Id: string;
@@ -108,13 +119,15 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         size="2xl"
-        onClose={onClose}>
+        onClose={onClose}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
             fontSize={'20px'}
             fontFamily={'Poppins'}
-            fontWeight={500}>
+            fontWeight={500}
+          >
             Approval Panel
           </ModalHeader>
           <ModalCloseButton />
@@ -123,7 +136,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
               fontSize={'16px'}
               fontWeight={600}
               fontFamily={'Poppins'}
-              color="#818BF5">
+              color="#818BF5"
+            >
               Basic Information
             </Text>
 
@@ -165,7 +179,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                 fontSize={'16px'}
                 fontFamily={'Montserrat'}
                 fontWeight={500}
-                color="#9999A5">
+                color="#9999A5"
+              >
                 Viewing:
                 <Text color="#8033FF" fontWeight={600} as="span">
                   Video + Article
@@ -184,7 +199,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                         fontWeight={600}
                         fontFamily={'Poppins'}
                         color="#818BF5"
-                        my="2">
+                        my="2"
+                      >
                         Article Link
                       </Text>
                       <Input
@@ -203,7 +219,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                         fontWeight={600}
                         fontFamily={'Poppins'}
                         color="#818BF5"
-                        my="2">
+                        my="2"
+                      >
                         Article Title
                       </Text>
                       <Input
@@ -227,7 +244,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                         fontWeight={600}
                         fontFamily={'Poppins'}
                         color="#818BF5"
-                        my="2">
+                        my="2"
+                      >
                         Video Link
                       </Text>
                       <Input
@@ -246,7 +264,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                         fontWeight={600}
                         fontFamily={'Poppins'}
                         color="#818BF5"
-                        my="2">
+                        my="2"
+                      >
                         Video Title
                       </Text>
                       <Input
@@ -264,7 +283,8 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
                         fontWeight={600}
                         fontFamily={'Poppins'}
                         color="#818BF5"
-                        my="2">
+                        my="2"
+                      >
                         Video Description
                       </Text>
                       <Textarea
@@ -289,48 +309,53 @@ function ApprovalModal({ data, isOpen, onOpen, onClose }: Props) {
             <Level2TitleDropDown level2={level2} setLevel2={setLevel2} />
           </ModalBody>
 
-          <ModalFooter
-            fontFamily={'Montserrat'}
-            fontWeight={'600'}
-            fontSize={'14px'}
-            letterSpacing={'0.2px'}
-            justifyContent={'flex-start'}>
-            <Button
-              width={'101px'}
-              borderRadius={'8px'}
-              onClick={() =>
-                sendData({
-                  campaignId: data?._id,
-                  level2Id: level2,
-                  status: 'Approved',
-                })
-              }
-              _hover={{
-                backgroundColor: '#00C48C',
-              }}
-              backgroundColor={'#66BB6A'}
-              color={'#fff'}
-              mr={3}>
-              approve
-            </Button>
-            <Button
-              width={'101px'}
-              borderRadius={'8px'}
-              backgroundColor={'#EF5350'}
-              color={'#fff'}
-              _hover={{
-                backgroundColor: '#E53935',
-              }}
-              onClick={() =>
-                sendData({
-                  campaignId: data?._id,
-                  level2Id: level2,
-                  status: 'Rejected',
-                })
-              }>
-              reject
-            </Button>
-          </ModalFooter>
+          {!isApprovedView && (
+            <ModalFooter
+              fontFamily={'Montserrat'}
+              fontWeight={'600'}
+              fontSize={'14px'}
+              letterSpacing={'0.2px'}
+              justifyContent={'flex-start'}
+            >
+              <Button
+                width={'101px'}
+                borderRadius={'8px'}
+                onClick={() =>
+                  sendData({
+                    campaignId: data?._id,
+                    level2Id: level2,
+                    status: 'Approved',
+                  })
+                }
+                _hover={{
+                  backgroundColor: '#00C48C',
+                }}
+                backgroundColor={'#66BB6A'}
+                color={'#fff'}
+                mr={3}
+              >
+                approve
+              </Button>
+              <Button
+                width={'101px'}
+                borderRadius={'8px'}
+                backgroundColor={'#EF5350'}
+                color={'#fff'}
+                _hover={{
+                  backgroundColor: '#E53935',
+                }}
+                onClick={() =>
+                  sendData({
+                    campaignId: data?._id,
+                    level2Id: level2,
+                    status: 'Rejected',
+                  })
+                }
+              >
+                reject
+              </Button>
+            </ModalFooter>
+          )}
         </ModalContent>
       </Modal>
     </>
