@@ -78,16 +78,12 @@ export default function App({ register, setValue, control }: IAppProps) {
           <TabPanels bg="white">
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
               {ContentTabs[tabIndex].title == 'Video' && (
-                <VideoTab register={register} control={control} />
+                <VideoTab register={register} />
               )}
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">
               {ContentTabs[tabIndex].title == 'Article' && (
-                <ArticleTab
-                  register={register}
-                  setValue={setValue}
-                  control={control}
-                />
+                <ArticleTab register={register} setValue={setValue} />
               )}
             </TabContentCard>
             <TabContentCard selected={ContentTabs[tabIndex].title} title="one">

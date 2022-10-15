@@ -6,14 +6,9 @@ import { CreateContentFormData } from '../../../../../api/datatypes/CreateCampai
 
 type Props = {
   register: UseFormRegister<CreateContentFormData>;
-  control: Control<CreateContentFormData>;
 };
 
-const Video = ({ register, control }: Props) => {
-  const { fields, append, remove } = useFieldArray({
-    name: 'videos',
-    control,
-  });
+const Video = ({ register }: Props) => {
   return (
     <Box>
       <Text variant={'inputlabel'}>Title</Text>

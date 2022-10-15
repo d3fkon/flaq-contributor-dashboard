@@ -6,6 +6,7 @@ export interface CampaignActions {
   fetchCreatorCampaign: () => void;
   fetchAdminCampaign: () => void;
 }
+
 const useCampaignStore = create<CampaignActions>((set) => ({
   campaign: [],
   fetchCreatorCampaign: async () => {

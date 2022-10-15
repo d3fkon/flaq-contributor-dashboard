@@ -58,7 +58,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { logout, reset } = useAuthenticationStore();
   const authData = useAuthenticationStore((state) => state.authData);
-
+  const router = useRouter();
   // To make sure there's no data mismatch between the server and the client, local state is used to store the auth data.
   const [data, setData] = useState<AuthData>();
 
@@ -90,15 +90,29 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full"
-      >
+        size="full">
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
 
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box color="black" ml={{ base: 0, md: 60 }} p="4">
+      <Box flex="1" color="black" ml={{ base: 0, md: 60 }} p="4">
+        <Flex direction={'row'} justifyContent="right" w="100%">
+          <Button
+            variant={'outline'}
+            fontFamily={'Helvetica'}
+            color="#A0AEC0"
+            fontWeight={'700'}
+            fontSize={'12px'}
+            onClick={() => {
+              logout();
+              router.push('/');
+            }}
+            leftIcon={<Icon as={BiLogOut} />}>
+            Logout
+          </Button>
+        </Flex>
         {children}
       </Box>
     </Box>
@@ -110,9 +124,6 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-  const { logout, reset } = useAuthenticationStore();
-  const router = useRouter();
-
   return (
     <Box
       bg={'#F8F9FA'}
@@ -121,8 +132,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       className="hidescroller"
       overflow={'scroll'}
-      {...rest}
-    >
+      {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Box>
           <Text
@@ -130,8 +140,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             fontWeight="700"
             fontSize={'14px'}
             color={'#2D3748'}
-            lineHeight={'21px'}
-          >
+            lineHeight={'21px'}>
             Flaq Academy
           </Text>
         </Box>
@@ -153,8 +162,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           fontSize="12px"
           fontWeight="700"
           fontFamily={'Helvetica'}
-          color="#2D3748"
-        >
+          color="#2D3748">
           Other
         </Text>
       </Box>
@@ -163,30 +171,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           {link.name}
         </NavItem>
       ))}
-      <Box
-        my="2"
-        w="100%"
-        display={'flex'}
-        justifyContent={'center'}
-        alignItems={'center'}
-      >
-        <Button
-          variant={'outline'}
-          mx="auto"
-          fontFamily={'Helvetica'}
-          color="#A0AEC0"
-          fontWeight={'700'}
-          fontSize={'12px'}
-          onClick={() => {
-            logout();
-            router.push('/');
-          }}
-          leftIcon={<Icon as={BiLogOut} />}
-        >
-          Logout
-        </Button>
-      </Box>
-
       <TwitterCard />
     </Box>
   );
@@ -205,14 +189,12 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
         _hover={{
           boxShadow: '0px 3.5px 5.5px rgba(0, 0, 0, 0.02)',
           bg: '#ffffff',
-        }}
-      >
+        }}>
         <NextLink href={`/dashboard${href}`}>
           <Link
             color="#A0AEC0"
             style={{ textDecoration: 'none' }}
-            _focus={{ boxShadow: 'none' }}
-          >
+            _focus={{ boxShadow: 'none' }}>
             <Flex
               align="center"
               p="2"
@@ -220,8 +202,7 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
               borderRadius="lg"
               role="group"
               cursor="pointer"
-              {...rest}
-            >
+              {...rest}>
               <Box
                 boxShadow="0px 3.5px 5.5px rgba(0, 0, 0, 0.02)"
                 borderRadius={'12px'}
@@ -231,16 +212,14 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
                 mr="4"
                 width={'30px'}
                 height={'30px'}
-                bg="white"
-              >
+                bg="white">
                 <Icon fontSize="15" color={'#818BF5'} as={icon} />
               </Box>
               <Text
                 fontFamily={'Helvetica'}
                 color="#A0AEC0"
                 fontWeight={'700'}
-                fontSize={'12px'}
-              >
+                fontSize={'12px'}>
                 {children}
               </Text>
             </Flex>
@@ -265,8 +244,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       bg={'#F8F9FA'}
       borderBottomWidth="1px"
       borderBottomColor={'#4c4646'}
-      {...rest}
-    >
+      {...rest}>
       <IconButton
         variant="outline"
         onClick={onOpen}
@@ -282,8 +260,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             fontFamily={'Poppins'}
             fontWeight="700"
             fontSize={'24px'}
-            color={'#ffffff'}
-          >
+            color={'#ffffff'}>
             Flaq
           </Text>
         </Box>

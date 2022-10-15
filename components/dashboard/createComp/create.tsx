@@ -22,10 +22,6 @@ import { createCampaign } from '../../../api/campaign';
 const Create = () => {
   const router = useRouter();
   const toast = useToast();
-  // const { response, loading, error, sendData } = useAxios({
-  //   method: 'POST',
-  //   url: `/creators/campaign/create`,
-  // });
 
   const {
     register,
@@ -67,8 +63,7 @@ const Create = () => {
               fontFamily={'Helvetica'}
               fontSize={'26px'}
               color={'#2D3748'}
-              fontWeight={700}
-            >
+              fontWeight={700}>
               Create Content
             </Text>
             <IconButton
@@ -86,8 +81,7 @@ const Create = () => {
                 fontFamily={'Helvetica'}
                 fontSize={'18px'}
                 color={'#818BF5'}
-                fontWeight={700}
-              >
+                fontWeight={700}>
                 Basic Information
               </Text>
             </Box>

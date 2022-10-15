@@ -22,4 +22,5 @@ const Demo = () => {
 };
 
 Demo.PageLayout = DashboardLayout;
+
 export default Demo;
