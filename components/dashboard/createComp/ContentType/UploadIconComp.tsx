@@ -47,6 +47,7 @@ const UploadIconComp = ({ setValue }: Props) => {
         </Center>
       )}
 
+      {/* Hidden Component of Image Input */}
       <input
         type="file"
         ref={hiddenFileInput}

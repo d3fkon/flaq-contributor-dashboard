@@ -8,9 +8,6 @@ function getContentDataUtil(inputdata: Array<ICampaigns>) {
   const output: ICampaigns[] = [];
   inputdata.map((da: ICampaigns) => {
     output.push(da);
-    // da?.campaigns.map((campaign) => {
-    //   output.push(campaign);
-    // });
   });
   return output;
 }

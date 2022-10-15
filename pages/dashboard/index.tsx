@@ -6,58 +6,29 @@ import PipelineTable from '../../components/dashboard/PipelineTable';
 
 import useAuthenticationStore from '../../stores/authenticationStore';
 import useCampaignStore from '../../stores/campaign';
-const CreatorDashboard = () => {
-  const {
-    campaign,
-    fetchCreatorCampaign,
-    fetchAdminCampaign,
-  } = useCampaignStore();
-  useEffect(() => {
-    fetchCreatorCampaign();
-  }, []);
-  return (
-    <Container
-      mt="18"
-      border="2"
-      mx="0"
-      maxW="100%"
-      bg="white"
-      py="1"
-      borderRadius={'8'}
-    >
-      {/* <ContentContainer data={campaign} /> */}
 
-      <PipelineTable data={campaign} />
-    </Container>
-  );
-};
-
-const AdminDashboard = () => {
-  const {
-    campaign,
-    fetchCreatorCampaign,
-    fetchAdminCampaign,
-  } = useCampaignStore();
-  useEffect(() => {
-    fetchAdminCampaign();
-  }, []);
-
-  return (
-    <Container mt="18" border="2" mx="0" maxW="100%">
-      {/* <ContentContainer data={campaign} /> */}
-      <PipelineTable data={campaign} />
-    </Container>
-  );
-};
 const Dashboard = () => {
+  const { campaign, fetchCreatorCampaign, fetchAdminCampaign } =
+    useCampaignStore();
+
+  // fetch data based on role
+  useEffect(() => {
+    switch (useAuthenticationStore.getState().authData.role) {
+      case 'Creator':
+        fetchCreatorCampaign();
+        break;
+      case 'Admin':
+        fetchAdminCampaign();
+        break;
+    }
+  }, []);
+
   return (
     <>
-      {useAuthenticationStore.getState().authData.role === 'Admin' && (
-        <AdminDashboard />
-      )}
-      {useAuthenticationStore.getState().authData.role === 'Creator' && (
-        <CreatorDashboard />
-      )}
+      <Container mt="18" border="2" mx="0" maxW="100%">
+        <ContentContainer data={campaign} />
+        <PipelineTable data={campaign} />
+      </Container>
     </>
   );
 };

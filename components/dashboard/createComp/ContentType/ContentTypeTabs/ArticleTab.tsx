@@ -20,14 +20,9 @@ import UploadIconComp from '../UploadIconComp';
 
 type Props = {
   register: UseFormRegister<CreateContentFormData>;
-  control: Control<CreateContentFormData>;
   setValue: UseFormSetValue<CreateContentFormData>;
 };
-const Article = ({ register, control, setValue }: Props) => {
-  const { fields, append, remove } = useFieldArray({
-    name: 'articles',
-    control,
-  });
+const Article = ({ register, setValue }: Props) => {
   return (
     <Box>
       <Flex>

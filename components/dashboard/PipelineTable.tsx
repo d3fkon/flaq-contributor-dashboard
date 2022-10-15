@@ -59,6 +59,137 @@ interface IPipelineTableData {
   updatedAt?: string;
   image?: string;
 }
+interface PipelineTableContainerProps {
+  data: Array<ICampaigns> | undefined;
+  status: string;
+  setIsApprovedView: React.Dispatch<React.SetStateAction<boolean>>;
+  openModal: Function;
+}
+const PipelineTableContainer = ({
+  data,
+  setIsApprovedView,
+  openModal,
+  status,
+}: PipelineTableContainerProps) => {
+  return (
+    <TabPanel>
+      <TableContainer>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th
+                fontSize="10px"
+                fontFamily={'Helvetica'}
+                fontWeight={'400'}
+                color="#A0AEC0"
+                textAlign={'left'}>
+                Content
+              </Th>
+              <Th
+                fontSize="10px"
+                fontFamily={'Helvetica'}
+                fontWeight={'400'}
+                color="#A0AEC0"
+                textAlign={'center'}>
+                Content Type
+              </Th>
+              <Th
+                fontSize="10px"
+                fontFamily={'Helvetica'}
+                fontWeight={'400'}
+                color="#A0AEC0"
+                textAlign={'center'}>
+                Status
+              </Th>
+              <Th
+                fontSize="10px"
+                fontFamily={'Helvetica'}
+                fontWeight={'400'}
+                color="#A0AEC0"
+                textAlign={'center'}>
+                Date
+              </Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data &&
+              getPipelineDataUtil(data)
+                .filter((data) => {
+                  return data.status === status;
+                })
+                .map((data, idx) => {
+                  return (
+                    <Tr key={idx}>
+                      <Td
+                        fontSize="14px"
+                        fontFamily={'Helvetica'}
+                        fontWeight={'700'}
+                        color="#2D3748"
+                        lineHeight={'20px'}
+                        textAlign="left">
+                        {data.title}
+                      </Td>
+                      <Td
+                        fontSize="14px"
+                        fontFamily={'Helvetica'}
+                        fontWeight={'700'}
+                        color="#2D3748"
+                        lineHeight={'20px'}
+                        textAlign="center">
+                        {data.contentType}
+                      </Td>
+                      <Td
+                        fontSize="14px"
+                        fontFamily={'Helvetica'}
+                        fontWeight={'700'}
+                        color="#2D3748"
+                        lineHeight={'20px'}
+                        textAlign="center">
+                        {data.status}
+                      </Td>
+                      <Td
+                        fontSize="14px"
+                        fontFamily={'Helvetica'}
+                        fontWeight={'700'}
+                        color="#2D3748"
+                        lineHeight={'20px'}
+                        textAlign="center">
+                        {new Date(`${data.updatedAt}`)
+                          .toISOString()
+                          .slice(0, 10)}
+                      </Td>
+                      {useAuthenticationStore.getState().authData.role ===
+                        'Admin' && (
+                        <Td
+                          fontSize="14px"
+                          fontFamily={'Helvetica'}
+                          fontWeight={'700'}
+                          color="#2D3748"
+                          lineHeight={'20px'}
+                          textAlign="center">
+                          <Text
+                            cursor={'pointer'}
+                            fontWeight="500"
+                            color="#2196F3"
+                            fontFamily="Poppins"
+                            fontSize="13px"
+                            onClick={() => {
+                              setIsApprovedView(true);
+                              openModal(data?._id);
+                            }}>
+                            View
+                          </Text>
+                        </Td>
+                      )}
+                    </Tr>
+                  );
+                })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </TabPanel>
+  );
+};
 
 const PipelineTable = ({ data }: IPipelineTable) => {
   const [approvalModalData, setApprovalModalData] = useState<
@@ -68,14 +199,15 @@ const PipelineTable = ({ data }: IPipelineTable) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // set data for approval modal and open it
   const openModal = (_id: string | undefined, isApprovedView?: boolean) => {
-    // setApprovalModalData(data[_id]);
     data &&
       setApprovalModalData(
         data[data.findIndex((x: ICampaigns) => x._id === _id)]
       );
     onOpen();
   };
+
   return (
     <Container my="2" maxW={{ base: 320, sm: 480, md: 720, lg: 1200 }}>
       <ApprovalModal
@@ -91,8 +223,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
             fontSize="18px"
             fontFamily={'Helvetica'}
             fontWeight={'700'}
-            color="#818BF5"
-          >
+            color="#818BF5">
             Your content pipeline
           </Text>
           <Spacer />
@@ -103,8 +234,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                 color="white"
                 backgroundColor="#818BF5"
                 variant="solid"
-                _hover={{ backgroundColor: 'rgba(129, 139, 245, 0.9)' }}
-              >
+                _hover={{ backgroundColor: 'rgba(129, 139, 245, 0.9)' }}>
                 Create
               </Button>
             </Link>
@@ -124,8 +254,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               color: '#2196F3',
               borderBottom: '2px',
               borderColor: '#2196F3',
-            }}
-          >
+            }}>
             APPROVED
           </Tab>
           <Tab
@@ -139,8 +268,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               borderBottom: '2px',
               color: '#2196F3',
               borderColor: '#2196F3',
-            }}
-          >
+            }}>
             PIPELINE
           </Tab>
           <Tab
@@ -154,12 +282,28 @@ const PipelineTable = ({ data }: IPipelineTable) => {
               borderBottom: '2px',
               color: '#2196F3',
               borderColor: '#2196F3',
-            }}
-          >
+            }}>
             REJECTED
           </Tab>
         </TabList>
         <TabPanels>
+          {/* Approved Table */}
+          <PipelineTableContainer
+            setIsApprovedView={setIsApprovedView}
+            data={data}
+            status={'Approved'}
+            openModal={openModal}
+          />
+
+          {/* Pipeline Table */}
+          <PipelineTableContainer
+            setIsApprovedView={setIsApprovedView}
+            data={data}
+            status={'Pipeline'}
+            openModal={openModal}
+          />
+
+          {/* Rejected Table */}
           <TabPanel>
             <TableContainer>
               <Table variant="simple">
@@ -170,8 +314,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'left'}
-                    >
+                      textAlign={'left'}>
                       Content
                     </Th>
                     <Th
@@ -179,8 +322,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}
-                    >
+                      textAlign={'center'}>
                       Content Type
                     </Th>
                     <Th
@@ -188,8 +330,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}
-                    >
+                      textAlign={'center'}>
                       Status
                     </Th>
                     <Th
@@ -197,260 +338,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                       fontFamily={'Helvetica'}
                       fontWeight={'400'}
                       color="#A0AEC0"
-                      textAlign={'center'}
-                    >
-                      Date
-                    </Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {data &&
-                    getPipelineDataUtil(data)
-                      .filter((data) => {
-                        return data.status === 'Approved';
-                      })
-                      .map((data, idx) => {
-                        return (
-                          <Tr key={idx}>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="left"
-                            >
-                              {data.title}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center"
-                            >
-                              {data.contentType}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center"
-                            >
-                              {data.status}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center"
-                            >
-                              {new Date(`${data.updatedAt}`)
-                                .toISOString()
-                                .slice(0, 10)}
-                            </Td>
-                            {useAuthenticationStore.getState().authData.role ===
-                              'Admin' && (
-                              <Td
-                                fontSize="14px"
-                                fontFamily={'Helvetica'}
-                                fontWeight={'700'}
-                                color="#2D3748"
-                                lineHeight={'20px'}
-                                textAlign="center"
-                              >
-                                <Text
-                                  cursor={'pointer'}
-                                  fontWeight="500"
-                                  color="#2196F3"
-                                  fontFamily="Poppins"
-                                  fontSize="13px"
-                                  onClick={() => {
-                                    setIsApprovedView(true);
-                                    openModal(data?._id);
-                                  }}
-                                >
-                                  View
-                                </Text>
-                              </Td>
-                            )}
-                          </Tr>
-                        );
-                      })}
-                </Tbody>
-              </Table>
-            </TableContainer>
-          </TabPanel>
-          <TabPanel>
-            <TableContainer>
-              <Table variant="simple">
-                <Thead>
-                  <Tr>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'left'}
-                    >
-                      Content
-                    </Th>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'center'}
-                    >
-                      Content Type
-                    </Th>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'center'}
-                    >
-                      Status
-                    </Th>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'center'}
-                    >
-                      Date
-                    </Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {data &&
-                    getPipelineDataUtil(data)
-                      .filter((data) => {
-                        return data.status === 'Pipeline';
-                      })
-                      .map((data, idx) => {
-                        return (
-                          <Tr key={idx}>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="left"
-                            >
-                              {data.title}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center"
-                            >
-                              {data.contentType}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center"
-                            >
-                              {data.status}
-                            </Td>
-                            <Td
-                              fontSize="14px"
-                              fontFamily={'Helvetica'}
-                              fontWeight={'700'}
-                              color="#2D3748"
-                              lineHeight={'20px'}
-                              textAlign="center"
-                            >
-                              {new Date(`${data.updatedAt}`)
-                                .toISOString()
-                                .slice(0, 10)}
-                            </Td>
-                            {useAuthenticationStore.getState().authData.role ===
-                              'Admin' && (
-                              <Td
-                                fontSize="14px"
-                                fontFamily={'Helvetica'}
-                                fontWeight={'700'}
-                                color="#2D3748"
-                                lineHeight={'20px'}
-                                textAlign="center"
-                              >
-                                <Text
-                                  cursor={'pointer'}
-                                  fontWeight="500"
-                                  color="#2196F3"
-                                  fontFamily="Poppins"
-                                  fontSize="13px"
-                                  onClick={() => {
-                                    setIsApprovedView(false);
-                                    openModal(data?._id);
-                                  }}
-                                >
-                                  View
-                                </Text>
-                              </Td>
-                            )}
-                          </Tr>
-                        );
-                      })}
-                </Tbody>
-              </Table>
-            </TableContainer>
-          </TabPanel>
-          <TabPanel>
-            <TableContainer>
-              <Table variant="simple">
-                <Thead>
-                  <Tr>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'left'}
-                    >
-                      Content
-                    </Th>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'center'}
-                    >
-                      Content Type
-                    </Th>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'center'}
-                    >
-                      Status
-                    </Th>
-                    <Th
-                      fontSize="10px"
-                      fontFamily={'Helvetica'}
-                      fontWeight={'400'}
-                      color="#A0AEC0"
-                      textAlign={'center'}
-                    >
+                      textAlign={'center'}>
                       Date
                     </Th>
                   </Tr>
@@ -470,8 +358,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="left"
-                            >
+                              textAlign="left">
                               {data.title}
                             </Td>
                             <Td
@@ -480,8 +367,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center"
-                            >
+                              textAlign="center">
                               {data.contentType}
                             </Td>
                             <Td
@@ -490,8 +376,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center"
-                            >
+                              textAlign="center">
                               {data.status}
                             </Td>
                             <Td
@@ -500,8 +385,7 @@ const PipelineTable = ({ data }: IPipelineTable) => {
                               fontWeight={'700'}
                               color="#2D3748"
                               lineHeight={'20px'}
-                              textAlign="center"
-                            >
+                              textAlign="center">
                               {new Date(`${data.updatedAt}`)
                                 .toISOString()
                                 .slice(0, 10)}
